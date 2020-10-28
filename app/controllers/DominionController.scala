@@ -10,15 +10,15 @@ import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponent
 class DominionController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   var a:Array[String] = new Array[String](1)
-  a(0) = "a"
-  //  val dominionServer: Unit = Dominion.main(a);
-//  val playerServer: Unit  = PlayerMain.main(null);
-//  val cardServer: Unit  = CardMain.main(null);
+  a(0) = " "
+    val dominionServer: Unit = Dominion.main(a);
+    val playerServer: Unit  = PlayerMain.main(Array());
+    //val cardServer: Unit  = CardMain.main(Array());
 
 
-//  val injector: Injector = Guice.createInjector(new DominionModule)
-//  val domionionController = injector.getInstance(classOf[Controller])
-  val dominionAsText: String = "a"
+  val injector: Injector = Guice.createInjector(new DominionModule)
+  val domionionController = injector.getInstance(classOf[Controller])
+  val dominionAsText: String = domionionController.toHTML
 
   def index: Action[AnyContent] = Action {
     Ok{views.html.index("Welcome to Dominion")}
@@ -29,7 +29,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
   def process(input: String): Action[AnyContent] = Action {
-
+    //TODO controller.processInputLine
     Ok{views.html.index(dominionAsText)}
   }
 }
