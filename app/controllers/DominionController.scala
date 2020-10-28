@@ -16,9 +16,9 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
 //  val cardServer: Unit  = CardMain.main(null);
 
 
-//  val injector: Injector = Guice.createInjector(new DominionModule)
-//  val domionionController = injector.getInstance(classOf[Controller])
-  val dominionAsText: String = "a"
+  val injector: Injector = Guice.createInjector(new DominionModule)
+  val domionionController: Controller = injector.getInstance(classOf[Controller])
+  val dominionAsText: String = "Welcome to Dominion!"
 
   def index: Action[AnyContent] = Action {
     Ok{views.html.index("Welcome to Dominion")}
@@ -29,7 +29,10 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
   def process(input: String): Action[AnyContent] = Action {
-
     Ok{views.html.index(dominionAsText)}
+  }
+
+  def about(): Action[AnyContent] = Action {
+    Ok{views.html.about()}
   }
 }
