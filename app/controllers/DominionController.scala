@@ -32,4 +32,8 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
     //TODO controller.processInputLine
     Ok{views.html.index(dominionAsText)}
   }
+
+  def about(): Action[AnyContent] = Action {
+    Ok{views.html.about()}
+  }
 }
