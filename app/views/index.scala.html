@@ -9,26 +9,23 @@
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
-    <h1>@controllerString</h1>
-    @*
-    * Get an `Html` object by calling the built-in Play welcome
-    * template and passing a `String` message.
-    *@
-    <br>
-    <div class="input-tui">
-        <form action="/dominion/process" method="get">
-            <input type="text" id="input" name="input">
-            <button type="submit">Send</button>
-        </form>
-    </div>
-
-    <div class="gameboard">
-        <div class="card-row">
-            <div class="card-stack">
-            </div>
+    <div class="container-tui">
+        <h2 class="tui-instructions">@controllerString</h2>
+        <div class="input-tui">
+            <form action="/dominion/process" method="get">
+                <input type="text" id="input" name="input">
+                <button class="tui-button" type="submit">Send</button>
+            </form>
         </div>
-        <div class="card-row">
-            <div class="card-stack">
+
+        <div class="gameboard">
+            <div class="card-row">
+                <div class="card-stack">
+                </div>
+            </div>
+            <div class="card-row">
+                <div class="card-stack">
+                </div>
             </div>
         </div>
     </div>

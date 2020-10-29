@@ -8,22 +8,24 @@
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
-    <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+    <div class="dominion-image">
+        <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+    </div>
+
     <h1 class="welcome-text">Welcome to Dominion</h1>
     @*
     * Get an `Html` object by calling the built-in Play welcome
     * template and passing a `String` message.
     *@
     <br>
-    <div class="primary-button">
+    <div class="container-button">
         <a href="/dominion/process?input=local" target="_blank">
             <button>Play!</button>
         </a>
     </div>
-    <br>
-    <div class="secondary-button">
+    <div class="">
         <a href="/dominion/about" target="_blank">
-            <button>Rules!</button>
+            <button class="button">Rules!</button>
         </a>
     </div>
 

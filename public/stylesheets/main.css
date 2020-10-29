@@ -1,0 +1,94 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-bottom: 15px;
+}
+
+a, a:visited, a:hover, a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.container-button {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.description-heading {
+    margin-bottom: 37px;
+}
+
+button, .container-tui input, .container-tui .tui-button {
+    text-align: left;
+    border: 1px solid #549ee7;
+    -webkit-border-radius: 100px 100px 100px 100px;
+    border-radius: 100px 100px 100px 100px;
+    outline: none;
+}
+
+.container-tui input, .container-tui .tui-button {
+    font-size: 15px;
+    padding: 10px 20px;
+}
+
+button {
+    padding: 20px 40px;
+    font-size: 25px;
+    background-color: #549ee7;
+    text-align: center;
+    width: 220px;
+    cursor: pointer;
+}
+
+.container-tui input {
+    width: 300px;
+}
+
+button:hover {
+    background-color: #3586d2;
+}
+
+.container-outer {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.container-inner {
+    display: inline-block;
+}
+
+.container-tui {
+    width: 1000px;
+}
+
+.container-tui .tui-instructions {
+    margin-bottom: 40px;
+}
+
+.container-tui .tui-button {
+    border-radius: 0 100px 100px 0;
+}
+
+.container-tui input {
+    border-radius: 100px 0 0 100px;
+}
+
+.text-container {
+    width: 1000px;
+    text-align: left;
+}
+
+.dominion-image img {
+    width: 500px;
+}
+
+
