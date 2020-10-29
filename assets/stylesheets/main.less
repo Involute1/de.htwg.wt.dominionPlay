@@ -1,0 +1,129 @@
+@primary-color: #549ee7;
+@secondary-color: #3586d2;
+@transition: all 200ms ease-in-out;
+@select: none;
+@margin-0: 0;
+@center: center;
+@left: left;
+@width-1000: 1000px;
+@width-500: 500px;
+@border-radius: 100px 100px 100px 100px;
+
+* {
+  font-family: 'Poppins', sans-serif;
+  -webkit-transition: (@transition);
+  -moz-transition: (@transition);
+  -ms-transition: (@transition);
+  -o-transition: (@transition);
+  transition: (@transition);
+  -webkit-touch-callout: (@select);
+  -webkit-user-select: (@select);
+  -khtml-user-select: (@select);
+  -moz-user-select: (@select);
+  -ms-user-select: (@select);
+  user-select: (@select);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-bottom: 15px;
+}
+
+a, a:visited, a:hover, a:active {
+  color: white;
+  text-decoration: none;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header div {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.outer-container {
+  text-align: (@center);
+  margin-top: 80px;
+
+  .inner-container {
+    display: inline-block;
+
+    .dominion-image img {
+      width: (@width-500);
+    }
+
+    .button-container {
+      margin-bottom: 20px;
+      text-align: (@center);
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 25px;
+      background-color: (@primary-color);
+      text-align: (@center);
+      width: 220px;
+      cursor: pointer;
+      border: 1px solid (@primary-color);
+      -webkit-border-radius: (@border-radius);
+      border-radius: (@border-radius);
+      outline: none;
+    }
+
+    button:hover {
+      background-color: (@secondary-color);
+    }
+
+    .tui-container {
+      width: (@width-1000);
+
+      input, .tui-button {
+        border: 1px solid (@primary-color);
+        -webkit-border-radius: (@border-radius);
+        border-radius: (@border-radius);
+        outline: none;
+      }
+
+      .tui-instructions {
+        margin-bottom: 40px;
+      }
+
+      .tui-button {
+        border-radius: 0 100px 100px 0;
+      }
+
+      input {
+        border-radius: 100px 0 0 100px;
+        width: 300px;
+        text-align: (@left);
+      }
+
+      input, .tui-button {
+        font-size: 15px;
+        padding: 10px 20px;
+      }
+    }
+
+    .text-container {
+      width: (@width-1000);
+      text-align: (@left);
+
+      .description-heading {
+        margin-bottom: 37px;
+      }
+    }
+  }
+}
+
+
