@@ -15,19 +15,19 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   val playerServer: Unit  = PlayerMain.main(Array())
 
   val injector: Injector = Guice.createInjector(new DominionModule)
-  val domionionController = injector.getInstance(classOf[Controller])
+  val dominionController: IController = injector.getInstance(classOf[Controller])
 
   def index: Action[AnyContent] = Action {
     Ok{views.html.titlescreen()}
   }
 
   def dominion: Action[AnyContent] = Action {
-    Ok{views.html.index(domionionController.toHTML)}
+    Ok{views.html.index(dominionController.toHTML)}
   }
 
   def process(input: String): Action[AnyContent] = Action {
-    domionionController.eval(input)
-    Ok{views.html.index(domionionController.toHTML)}
+    dominionController.eval(input)
+    Ok{views.html.index(dominionController.toHTML)}
   }
 
   def about(): Action[AnyContent] = Action {
