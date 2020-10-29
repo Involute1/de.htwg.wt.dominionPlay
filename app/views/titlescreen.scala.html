@@ -9,18 +9,23 @@
 *@
 @main("Welcome to Dominion") {
     <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-    <h1>Welcome to Dominion</h1>
+    <h1 class="welcome-text">Welcome to Dominion</h1>
     @*
     * Get an `Html` object by calling the built-in Play welcome
     * template and passing a `String` message.
     *@
     <br>
-    <a href="/dominion/process/local" target="_blank">
-        <button>Play!</button>
-    </a>
+    <div class="primary-button">
+        <a href="/dominion/process/local" target="_blank">
+            <button>Play!</button>
+        </a>
+    </div>
     <br>
-    <a href="/dominion/about" target="_blank">
-        <button>Rules!</button>
-    </a>
+    <div class="secondary-button">
+        <a href="/dominion/about" target="_blank">
+            <button>Rules!</button>
+        </a>
+    </div>
+
 
 }
