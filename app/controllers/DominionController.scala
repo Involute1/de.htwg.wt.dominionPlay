@@ -15,7 +15,6 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
 //  val cardServer: Unit  = CardMain.main(Array())
   val playerServer: Unit  = PlayerMain.main(Array())
 
-
   val injector: Injector = Guice.createInjector(new DominionModule)
   val domionionController = injector.getInstance(classOf[Controller])
 
