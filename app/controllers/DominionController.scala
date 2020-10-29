@@ -33,4 +33,5 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   def about(): Action[AnyContent] = Action {
     Ok{views.html.about()}
   }
+
 }
