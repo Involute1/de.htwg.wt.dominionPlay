@@ -26,9 +26,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
   def process(input: String): Action[AnyContent] = Action {
-    System.out.println(input)
     dominionController.eval(input)
-    println(input)
     Ok{views.html.index(dominionController.toHTML)}
   }
 
