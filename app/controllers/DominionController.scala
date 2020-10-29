@@ -9,9 +9,8 @@ import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponent
 
 class DominionController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
-  var a:Array[String] = new Array[String](1)
-  a(0) = " "
-  val dominionServer: Unit = Dominion.main(a)
+  val initArray:Array[String] = Array(" ")
+  val dominionServer: Unit = Dominion.main(initArray)
 //  val cardServer: Unit  = CardMain.main(Array())
   val playerServer: Unit  = PlayerMain.main(Array())
 
