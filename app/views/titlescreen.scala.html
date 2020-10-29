@@ -2,24 +2,28 @@
 * This template takes a single argument, a String containing a
 * message to display.
 *@
-@(controllerString: String)
 @*
 * Call the `main` template with two arguments. The first
 * argument is a `String` with the title of the page, the second
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
-    <h1>@controllerString</h1>
+    <h1>Welcome to Dominion</h1>
     @*
     * Get an `Html` object by calling the built-in Play welcome
     * template and passing a `String` message.
     *@
     <br>
-    <div class="input-tui">
-        <form action="/dominion/process/" method="get">
-            <input type="text" id="input" name="input">
-            <input type="submit" name="submit" value="Submit">
-        </form>
-    </div>
+    <form method="get" action="/dominion/process/a" target="_blank">
+        <input type="submit" value="Play!">
+    </form>
+    <br>
+    <form method="get" action="/dominion/about" target="_blank">
+        <input type="submit" value="Rules">
+    </form>
+    <br>
+    <form method="get" action="" target="_blank">
+        <input type="submit" value="Quit">
+    </form>
 
 }

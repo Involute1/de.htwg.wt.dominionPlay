@@ -19,7 +19,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   val domionionController = injector.getInstance(classOf[Controller])
 
   def index: Action[AnyContent] = Action {
-    Ok{views.html.index("Welcome to Dominion")}
+    Ok{views.html.titlescreen()}
   }
 
   def dominion: Action[AnyContent] = Action {
