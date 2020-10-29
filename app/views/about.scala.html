@@ -8,15 +8,16 @@
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
+    <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
     <h1>Welcome to Dominion</h1>
     @*
     * Get an `Html` object by calling the built-in Play welcome
     * template and passing a `String` message.
     *@
     <br>
-    <form method="get" action="/dominion/process/a" target="_blank">
-        <input type="submit" value="Play!">
-    </form>
+    <a href="/dominion/process/a" target="_blank">
+        <button>Play!</button>
+    </a>
     <br>
     <div class="game-goal">
         <div class="heading">
