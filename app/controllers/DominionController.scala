@@ -11,10 +11,9 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
 
   var a:Array[String] = new Array[String](1)
   a(0) = " "
-    val dominionServer: Unit = Dominion.main(a);
-    val playerServer: Unit  = PlayerMain.main(Array());
-    //val cardServer: Unit  = CardMain.main(Array());
-
+  val dominionServer: Unit = Dominion.main(a)
+  val playerServer: Unit  = PlayerMain.main(Array())
+  val cardServer: Unit  = CardMain.main(Array())
 
   val injector: Injector = Guice.createInjector(new DominionModule)
   val domionionController = injector.getInstance(classOf[Controller])
@@ -29,7 +28,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
   def process(input: String): Action[AnyContent] = Action {
-    //TODO controller.processInputLine
+    domionionController.eval(input)
     Ok{views.html.index(dominionAsText)}
   }
 
