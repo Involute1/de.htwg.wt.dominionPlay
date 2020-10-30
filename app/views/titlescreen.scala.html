@@ -8,20 +8,21 @@
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
-    <h1 class="welcome-text">Welcome to Dominion</h1>
-    @*
-    * Get an `Html` object by calling the built-in Play welcome
-    * template and passing a `String` message.
-    *@
+    <div class="welcome-text">
+        <h1>Welcome to Dominion</h1>
+    </div>
     <div class="button-container">
         <a href="/dominion/process?input=local">
-            <button>Play!</button>
+            <button type="button" class="btn btn-primary">Play</button>
         </a>
     </div>
     <div class="button-container">
         <a href="/dominion/about">
-            <button>Rules!</button>
+            <button type="button" class="btn btn-primary">Rules</button>
         </a>
+    </div>
+    <div class="button-container">
+        <button type="button" class="btn btn-primary">Quit</button>
     </div>
 
 
