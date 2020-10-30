@@ -14,91 +14,65 @@
     margin: 0;
     padding: 0;
 }
+*::-webkit-scrollbar {
+    display: none;
+}
 h1, h2, h3, h4, h5 {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 a, a:visited, a:hover, a:active {
-    color: #3586d2;
+    color: #0062cc;
     text-decoration: none;
 }
-.outer-container {
-    text-align: center;
+.pricing-header {
+    max-width: 700px;
 }
-.outer-container .inner-container {
-    display: inline-block;
-}
-.outer-container .inner-container .dominion-image img {
+.pricing-header .dominion-image img {
     width: 500px;
-    margin-top: 20px;
 }
-.outer-container .inner-container .button-container {
+.pricing-header .welcome-text h1 {
+    margin-bottom: 50px;
+}
+.pricing-header .button-container {
     margin-bottom: 20px;
     text-align: center;
 }
-.outer-container .inner-container button {
-    padding: 20px 40px;
+.pricing-header .button-container button {
+    padding: 12px 29px;
     font-size: 25px;
-    background-color: #549ee7;
-    text-align: center;
-    width: 220px;
+    width: 150px;
     cursor: pointer;
-    border: 1px solid #549ee7;
     -webkit-border-radius: 100px;
     border-radius: 100px;
-    outline: none;
 }
-.outer-container .inner-container button:hover {
-    background-color: #3586d2;
+.pricing-header .text-left .description-heading {
+    margin-bottom: 37px;
 }
-.outer-container .inner-container .tui-container {
-    width: 1000px;
+.pricing-header .tui-container .input-tui {
+    margin: 10px 20px 0 0;
 }
-.outer-container .inner-container .tui-container input, .outer-container .inner-container .tui-container .tui-button {
-    border: 1px solid #549ee7;
-    -webkit-border-radius: 100px;
-    border-radius: 100px;
-    outline: none;
+.pricing-header .tui-container .input-tui .row {
+    margin: 0;
 }
-.outer-container .inner-container .tui-container .tui-instructions {
-    margin-bottom: 40px;
+.pricing-header .tui-container .input-tui input {
+    width: 40%;
+    margin-right: 15px;
 }
-.outer-container .inner-container .tui-container .tui-button {
-    border-radius: 0 100px 100px 0;
+.pricing-header .tui-container .input-tui button {
+    width: 85px;
 }
-.outer-container .inner-container .tui-container input {
-    border-radius: 100px 0 0 100px;
-    width: 300px;
-    text-align: left;
+.container {
+    max-width: 960px;
 }
-.outer-container .inner-container .tui-container input, .outer-container .inner-container .tui-container .tui-button {
-    font-size: 15px;
-    padding: 10px 20px;
-}
-.outer-container .inner-container .tui-container .card-row {
-    margin-top: 20px;
-    width: 1000px;
-}
-.outer-container .inner-container .tui-container .card-row .card-stack img {
-    width: 180px;
-    margin: 10px;
-    float: left;
-    cursor: pointer;
-}
-.outer-container .inner-container .tui-container .player {
-    margin-top: 40px;
-}
-.outer-container .inner-container .tui-container .player .player-name {
-    margin-left: 10px;
-    text-align: right;
+.container .gameboard .player-name {
     padding-top: 10px;
+    margin: 0 35px 15px 0;
 }
-.outer-container .inner-container .tui-container .player .player-money {
-    margin-right: 10px;
-    text-align: center;
-    float: left;
+.container .gameboard .player-money {
+    margin: 0 35px 15px 0;
 }
-.outer-container .inner-container .tui-container .player .player-money.number-circle {
-    margin-left: 10px;
+.container .gameboard .player-money.number-circle {
+    margin-right: 25px;
     font: 33px Arial, sans-serif;
     width: 45px;
     height: 45px;
@@ -110,10 +84,8 @@ a, a:visited, a:hover, a:active {
     line-height: 48px;
     box-sizing: content-box;
 }
-.outer-container .inner-container .text-container {
-    width: 1000px;
-    text-align: left;
-}
-.outer-container .inner-container .text-container .description-heading {
-    margin-bottom: 37px;
+.container .card-stack img {
+    width: 180px;
+    margin: 0 42px 25px 0;
+    cursor: pointer;
 }
