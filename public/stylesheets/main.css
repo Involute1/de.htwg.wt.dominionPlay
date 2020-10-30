@@ -17,75 +17,61 @@
 *::-webkit-scrollbar {
     display: none;
 }
-
 h1, h2, h3, h4, h5 {
     margin-bottom: 25px;
 }
-
 a, a:visited, a:hover, a:active {
     color: #0062cc;
     text-decoration: none;
 }
-
-.container {
-    max-width: 960px;
-}
-
-.tui-container .row {
-    margin: 0;
-}
-
 .pricing-header {
     max-width: 700px;
 }
-
-.card-deck .card {
-    min-width: 220px;
-}
-
-.dominion-image img {
+.pricing-header .dominion-image img {
     width: 500px;
 }
-
-.text-left .description-heading {
-    margin-bottom: 37px;
-}
-
-.welcome-text h1{
+.pricing-header .welcome-text h1 {
     margin-bottom: 50px;
 }
-
-.button-container {
+.pricing-header .button-container {
     margin-bottom: 20px;
     text-align: center;
 }
-
-.button-container button {
+.pricing-header .button-container button {
     padding: 12px 29px;
     font-size: 25px;
     width: 150px;
     cursor: pointer;
-    border: 1px solid #549ee7;
     -webkit-border-radius: 100px;
     border-radius: 100px;
 }
-
-.card-stack img {
-    width: 180px;
-    margin: 0 42px 25px 0;
-    cursor: pointer;
+.pricing-header .text-left .description-heading {
+    margin-bottom: 37px;
 }
-
-.player-name {
+.pricing-header .tui-container .input-tui {
+    margin: 10px 20px 0 0;
+}
+.pricing-header .tui-container .input-tui .row {
+    margin: 0;
+}
+.pricing-header .tui-container .input-tui input {
+    width: 40%;
+    margin-right: 15px;
+}
+.pricing-header .tui-container .input-tui button {
+    width: 85px;
+}
+.container {
+    max-width: 960px;
+}
+.container .gameboard .player-name {
     padding-top: 10px;
     margin: 0 35px 15px 0;
 }
-
-.player-money {
+.container .gameboard .player-money {
     margin: 0 35px 15px 0;
 }
-
-.player-money.number-circle {
+.container .gameboard .player-money.number-circle {
     margin-right: 25px;
     font: 33px Arial, sans-serif;
     width: 45px;
@@ -98,16 +84,8 @@ a, a:visited, a:hover, a:active {
     line-height: 48px;
     box-sizing: content-box;
 }
-
-.input-tui {
-    margin: 10px 20px 0 0;
-}
-
-.input-tui input {
-    width: 40%;
-    margin-right: 15px;
-}
-
-.input-tui button {
-    width: 85px;
+.container .card-stack img {
+    width: 180px;
+    margin: 0 42px 25px 0;
+    cursor: pointer;
 }

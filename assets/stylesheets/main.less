@@ -1,161 +1,125 @@
-@primary-color: #549ee7;
-@secondary-color: #3586d2;
-@coin-color: #e2b007;
-@white: #fff;
-@coin-size: 45px;
 @transition: all 200ms ease-in-out;
 @select: none;
-@margin-0: 0;
-@margin-10: 10px;
-@margin-15: 15px;
-@margin-20: 20px;
-@margin-40: 40px;
-@width-1000: 1000px;
-@width-500: 500px;
-@border-radius-100px: 100px;
+@coin-color: #e2b007;
+@coin-size: 45px;
+@user-margin: 0 35px 15px 0;
+@border-radius: 100px;
+
 
 * {
   font-family: 'Poppins', sans-serif;
-  -webkit-transition: (@transition);
-  -moz-transition: (@transition);
-  -ms-transition: (@transition);
-  -o-transition: (@transition);
-  transition: (@transition);
-  -webkit-touch-callout: (@select);
-  -webkit-user-select: (@select);
-  -khtml-user-select: (@select);
-  -moz-user-select: (@select);
-  -ms-user-select: (@select);
-  user-select: (@select);
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+  -webkit-touch-callout: @select;
+  -webkit-user-select: @select;
+  -khtml-user-select: @select;
+  -moz-user-select: @select;
+  -ms-user-select: @select;
+  user-select: @select;
   margin: 0;
   padding: 0;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 h1, h2, h3, h4, h5 {
-  margin-bottom: (@margin-15);
+  margin-bottom: 25px;
 }
 
 a, a:visited, a:hover, a:active {
-  color: #3586d2;
+  color: #0062cc;
   text-decoration: none;
 }
 
-.outer-container {
-  text-align: center;
+.pricing-header {
+  max-width: 700px;
 
-  .inner-container {
-    display: inline-block;
+  .dominion-image img {
+    width: 500px;
+  }
 
-    .dominion-image img {
-      width: (@width-500);
-      margin-top: (@margin-20);
-    }
+  .welcome-text h1 {
+    margin-bottom: 50px;
+  }
 
-    .button-container {
-      margin-bottom: (@margin-20);
-      text-align: center;
-    }
+  .button-container {
+    margin-bottom: 20px;
+    text-align: center;
 
     button {
-      padding: 20px 40px;
+      padding: 12px 29px;
       font-size: 25px;
-      background-color: (@primary-color);
-      text-align: center;
-      width: 220px;
+      width: 150px;
       cursor: pointer;
-      border: 1px solid (@primary-color);
-      -webkit-border-radius: (@border-radius-100px);
-      border-radius: (@border-radius-100px);
-      outline: none;
+      -webkit-border-radius: @border-radius;
+      border-radius: @border-radius;
     }
+  }
 
-    button:hover {
-      background-color: (@secondary-color);
+  .text-left {
+    .description-heading {
+      margin-bottom: 37px;
     }
+  }
 
-    .tui-container {
-      width: (@width-1000);
+  .tui-container {
+    .input-tui {
+      margin: 10px 20px 0 0;
 
-      input, .tui-button {
-        border: 1px solid (@primary-color);
-        -webkit-border-radius: (@border-radius-100px);
-        border-radius: (@border-radius-100px);
-        outline: none;
-      }
-
-      .tui-instructions {
-        margin-bottom: (@margin-40);
-      }
-
-      .tui-button {
-        border-radius: 0 100px 100px 0;
+      .row {
+        margin: 0;
       }
 
       input {
-        border-radius: 100px 0 0 100px;
-        width: 300px;
-        text-align: left;
+        width: 40%;
+        margin-right: 15px;
       }
 
-      input, .tui-button {
-        font-size: 15px;
-        padding: 10px 20px;
-      }
-
-      .card-row {
-        margin-top: (@margin-20);
-        width: (@width-1000);
-
-        .card-stack img {
-          width: 180px;
-          margin: (@margin-10);
-          float: left;
-          cursor: pointer;
-        }
-      }
-
-      .player {
-        margin-top: (@margin-40);
-
-        .player-name {
-          margin-left: (@margin-10);
-          text-align: right;
-          padding-top: (@margin-10);
-        }
-
-        .player-money {
-          margin-right: (@margin-10);
-          text-align: center;
-          float: left;
-        }
-
-        .player-money.number-circle {
-          margin-left: (@margin-10);
-          font: 33px Arial, sans-serif;
-          width: (@coin-size);
-          height: (@coin-size);
-          border: 0.1em solid (@coin-color);
-          color: (@white);
-          background: (@coin-color);
-          text-align: center;
-          border-radius: 50%;
-          line-height: 48px;
-          box-sizing: content-box;
-        }
-      }
-
-
-    }
-
-    .text-container {
-      width: (@width-1000);
-      text-align: left;
-
-      .description-heading {
-        margin-bottom: 37px;
+      button {
+        width: 85px;
       }
     }
   }
 }
 
+.container {
+  max-width: 960px;
 
+  .gameboard {
+    .player-name {
+      padding-top: 10px;
+      margin: @user-margin;
+    }
+
+    .player-money {
+      margin: @user-margin;
+    }
+
+    .player-money.number-circle {
+      margin-right: 25px;
+      font: 33px Arial, sans-serif;
+      width: @coin-size;
+      height: @coin-size;
+      border: 0.1em solid @coin-color;
+      color: #fff;
+      background: @coin-color;
+      text-align: center;
+      border-radius: 50%;
+      line-height: 48px;
+      box-sizing: content-box;
+    }
+  }
+
+  .card-stack {
+    img {
+      width: 180px;
+      margin: 0 42px 25px 0;
+      cursor: pointer;
+    }
+  }
+}
