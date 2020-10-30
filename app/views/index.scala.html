@@ -9,16 +9,60 @@
 * argument is an `Html` object containing the body of the page.
 *@
 @main("Welcome to Dominion") {
-    <h1>@controllerString</h1>
-    @*
-    * Get an `Html` object by calling the built-in Play welcome
-    * template and passing a `String` message.
-    *@
-    <br>
-    <div class="input-tui">
-        <form action="/dominion/process" method="get">
-            <input type="text" id="input" name="input">
-            <button type="submit">Send</button>
-        </form>
+    <div class="tui-container">
+        <h2 class="tui-instructions">@controllerString</h2>
+        @if(controllerString == "Please enter the number of Players, must be between 3 & 5:") {
+            <div class="input-tui">
+                <form action="/dominion/process" method="get">
+                    <input type="text" id="input" name="input">
+                    <button class="tui-button" type="submit">Send</button>
+                </form>
+            </div>
+        } else {
+            <div class="gameboard">
+                <div class="player">
+                    <div class="player-money number-circle" id="player-money">
+                        7
+                    </div>
+                    <div class="player-name" id="player-name">
+                        <h2>Luca Nothvogel</h2>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-stack" id="card_1">
+                        <img src="@routes.Assets.versioned("images/cards/Cellar.png")">
+                    </div>
+                    <div class="card-stack" id="card_2">
+                        <img src="@routes.Assets.versioned("images/cards/Copper.png")">
+                    </div>
+                    <div class="card-stack" id="card_3">
+                        <img src="@routes.Assets.versioned("images/cards/Festival.png")">
+                    </div>
+                    <div class="card-stack" id="card_4">
+                        <img src="@routes.Assets.versioned("images/cards/Market.png")">
+                    </div>
+                    <div class="card-stack" id="card_5">
+                        <img src="@routes.Assets.versioned("images/cards/Province.png")">
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-stack" id="card_6">
+                        <img src="@routes.Assets.versioned("images/cards/Mine.png")">
+                    </div>
+                    <div class="card-stack" id="card_7">
+                        <img src="@routes.Assets.versioned("images/cards/Remodel.png")">
+                    </div>
+                    <div class="card-stack" id="card_8">
+                        <img src="@routes.Assets.versioned("images/cards/Smithy.png")">
+                    </div>
+                    <div class="card-stack" id="card_9">
+                        <img src="@routes.Assets.versioned("images/cards/Village.png")">
+                    </div>
+                    <div class="card-stack" id="card_10">
+                        <img src="@routes.Assets.versioned("images/cards/Workshop.png")">
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 }
