@@ -1,13 +1,18 @@
 @primary-color: #549ee7;
 @secondary-color: #3586d2;
+@coin-color: #e2b007;
+@white: #fff;
+@coin-size: 45px;
 @transition: all 200ms ease-in-out;
 @select: none;
 @margin-0: 0;
-@center: center;
-@left: left;
+@margin-10: 10px;
+@margin-15: 15px;
+@margin-20: 20px;
+@margin-40: 40px;
 @width-1000: 1000px;
 @width-500: 500px;
-@border-radius: 100px 100px 100px 100px;
+@border-radius-100px: 100px;
 
 * {
   font-family: 'Poppins', sans-serif;
@@ -27,57 +32,40 @@
 }
 
 h1, h2, h3, h4, h5 {
-  margin-bottom: 15px;
+  margin-bottom: (@margin-15);
 }
 
 a, a:visited, a:hover, a:active {
-  color: white;
+  color: #3586d2;
   text-decoration: none;
-}
-
-.header {
-  overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
-}
-
-.header div {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
 }
 
 .outer-container {
-  text-align: (@center);
-  margin-top: 80px;
+  text-align: center;
 
   .inner-container {
     display: inline-block;
 
     .dominion-image img {
       width: (@width-500);
+      margin-top: (@margin-20);
     }
 
     .button-container {
-      margin-bottom: 20px;
-      text-align: (@center);
+      margin-bottom: (@margin-20);
+      text-align: center;
     }
 
     button {
       padding: 20px 40px;
       font-size: 25px;
       background-color: (@primary-color);
-      text-align: (@center);
+      text-align: center;
       width: 220px;
       cursor: pointer;
       border: 1px solid (@primary-color);
-      -webkit-border-radius: (@border-radius);
-      border-radius: (@border-radius);
+      -webkit-border-radius: (@border-radius-100px);
+      border-radius: (@border-radius-100px);
       outline: none;
     }
 
@@ -90,13 +78,13 @@ a, a:visited, a:hover, a:active {
 
       input, .tui-button {
         border: 1px solid (@primary-color);
-        -webkit-border-radius: (@border-radius);
-        border-radius: (@border-radius);
+        -webkit-border-radius: (@border-radius-100px);
+        border-radius: (@border-radius-100px);
         outline: none;
       }
 
       .tui-instructions {
-        margin-bottom: 40px;
+        margin-bottom: (@margin-40);
       }
 
       .tui-button {
@@ -106,18 +94,62 @@ a, a:visited, a:hover, a:active {
       input {
         border-radius: 100px 0 0 100px;
         width: 300px;
-        text-align: (@left);
+        text-align: left;
       }
 
       input, .tui-button {
         font-size: 15px;
         padding: 10px 20px;
       }
+
+      .card-row {
+        margin-top: (@margin-20);
+        width: (@width-1000);
+
+        .card-stack img {
+          width: 180px;
+          margin: (@margin-10);
+          float: left;
+          cursor: pointer;
+        }
+      }
+
+      .player {
+        margin-top: (@margin-40);
+
+        .player-name {
+          margin-left: (@margin-10);
+          text-align: right;
+          padding-top: (@margin-10);
+        }
+
+        .player-money {
+          margin-right: (@margin-10);
+          text-align: center;
+          float: left;
+        }
+
+        .player-money.number-circle {
+          margin-left: (@margin-10);
+          font: 33px Arial, sans-serif;
+          width: (@coin-size);
+          height: (@coin-size);
+          border: 0.1em solid (@coin-color);
+          color: (@white);
+          background: (@coin-color);
+          text-align: center;
+          border-radius: 50%;
+          line-height: 48px;
+          box-sizing: content-box;
+        }
+      }
+
+
     }
 
     .text-container {
       width: (@width-1000);
-      text-align: (@left);
+      text-align: left;
 
       .description-heading {
         margin-bottom: 37px;
