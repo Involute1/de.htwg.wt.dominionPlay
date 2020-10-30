@@ -1,10 +1,13 @@
 @(controllerString: String)
 @main("Welcome to Dominion") {
     <div class="tui-container">
-        <div class="tui-string">
-            <h2 class="tui-instructions">@controllerString</h2>
-        </div>
-        @if(controllerString == "Please enter the number of Players, must be between 3 & 5:" || controllerString == "Player 1 please enter your name:") {
+        @if(controllerString == "Please enter the number of Players, must be between 3 & 5:"
+                || controllerString == "Player 1 please enter your name:"
+                || controllerString == "Player 2 please enter your name:"
+                || controllerString == "Player 3 please enter your name:") {
+            <div class="tui-string">
+                <h2 class="tui-instructions">@controllerString</h2>
+            </div>
             <div class="input-tui">
                 <form action="/dominion/process" method="get">
                     <div class="row justify-content-md-center">
