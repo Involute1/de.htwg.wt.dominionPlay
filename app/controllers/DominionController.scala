@@ -22,12 +22,16 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   }
 
   def dominion: Action[AnyContent] = Action {
-    Ok{views.html.index(dominionController.toHTML)}
+    Ok{views.html.index(dominionController.toHTML)(1)(1)(0)("")(0)("")(Nil)(Nil)}
   }
 
   def process(input: String): Action[AnyContent] = Action {
     dominionController.eval(input)
-    Ok{views.html.index(dominionController.toHTML)}
+    if (dominionController.getControllerStateAsString == "ActionState" || dominionController.getControllerStateAsString == "BuyState") {
+      Ok{views.html.index(dominionController.toHTML)(dominionController.getCurrentPlayerActions)(dominionController.getCurrentPlayerBuys)(dominionController.getCurrentPlayerMoney)(dominionController.getCurrentPhaseAsString)(dominionController.getTurn)(dominionController.getCurrentPlayerName)(dominionController.getCurrentPlayerHand)(dominionController.getPlayingDecks)}
+    } else {
+      Ok{views.html.index(dominionController.toHTML)(1)(1)(0)("")(0)("")(Nil)(Nil)}
+    }
   }
 
   def about(): Action[AnyContent] = Action {
