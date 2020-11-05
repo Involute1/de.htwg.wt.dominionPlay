@@ -37,35 +37,39 @@
         </div>
     </div>
     <div class="info-box">
-        Turn: @turn
-        Phase: @phase
-        Actions: @playerActions
-        Buys: @playerBuys
-        Money: @playerMoney
+
     </div>
     <div class="container px-3 pb-md-4 mx-auto text-center">
         <div class="row gameboard">
-            <div class="player-name" id="player-name">
-                <h2>@playerName</h2>
-            </div>
-            <div class="player-money number-circle" id="player-money">
-            @playerMoney
+            <div class="game-information my-3">
+                <div class="info text-center">
+                    <h2 class="float-left mx-5">@playerName</h2>
+                    <h2 class="float-left mx-5">Turn: @turn</h2>
+                    <h2 class="float-left mx-5">Phase: @phase</h2>
+                    <h2 class="float-left mx-5">Actions: @playerActions</h2>
+                    <h2 class="float-left mx-5">Buys: @playerBuys</h2>
+                    <h2 class="float-left mx-5">Money: @playerMoney</h2>
+                </div>
             </div>
         </div>
-        <div class="row card-row">
+        <div class="row card-row playing-decks">
         @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
             <div class="card-stack" id="card_@idx">
-                <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
-                ( @playingDeck.size )
+                <img onclick="cardClick()" class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
+                <br>( @playingDeck.size )
             </div>
         }
         </div>
-        <div class="row card-row">
-        @for((card, idx) <- playerHand.zipWithIndex) {
-            <div class="card-stack" id="handCard_@idx">
-                <img class="card_name" src="/assets/images/cards/@card.cardName">
+        <div class="row hand-cards my-3">
+            <h2 class="mx-5">Handkarten</h2>
+            <br>
+            <div class="card-row hand-deck">
+            @for((card, idx) <- playerHand.zipWithIndex) {
+                <div class="card-stack float-left" id="handCard_@idx">
+                    <img onclick="cardClick()" class="card_name" src="/assets/images/cards/@card.cardName">
+                </div>
+            }
             </div>
-        }
         </div>
     </div>
 }
