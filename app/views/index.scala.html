@@ -14,14 +14,12 @@
                     </div>
                 </form>
             </div>
-        }
-
-        @if(controllerString == "Player 1 please enter your name:"
+        } else {
+            @if(controllerString == "Player 1 please enter your name:"
                 || controllerString == "Player 2 please enter your name:"
                 || controllerString == "Player 3 please enter your name:"
                 || controllerString == "Player 4 please enter your name:"
                 || controllerString == "Player 5 please enter your name:") {
-
 
             <div class="tui-string">
                 <h2 class="tui-instructions">@controllerString</h2>
@@ -35,49 +33,52 @@
                 </form>
             </div>
         } else {
-        </div>
-    </div>
-    <div class="info-box">
-        Turn: @turn
-        Phase: @phase
-        Actions: @playerActions
-        Buys: @playerBuys
-        Money: @playerMoney
-    </div>
-    <div class="container px-3 pb-md-4 mx-auto text-center">
-        <div class="row gameboard">
-            <div class="player-name" id="player-name">
-                <h2>@playerName</h2>
-            </div>
-            <div class="player-money number-circle" id="player-money">
-                @playerMoney
-            </div>
-        </div>
-        <div class="row card-row">
-            @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
-                @playingDeck.head.cardName
-                <div class="card-stack" id="card_@idx">
-                    <img src=@routes.Assets.versioned("images/cards/.png")>
+                <div class="info-box">
+                    Turn: @turn
+                    Phase: @phase
+                    Actions: @playerActions
+                    Buys: @playerBuys
+                    Money: @playerMoney
+                </div>
+                <div class="container px-3 pb-md-4 mx-auto text-center">
+                    <div class="row gameboard">
+                        <div class="player-name" id="player-name">
+                            <h2>@playerName</h2>
+                        </div>
+                        <div class="player-money number-circle" id="player-money">
+                        @playerMoney
+                        </div>
+                    </div>
+                    <div class="row card-row">
+                    @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
+                        val a = @playingDeck.head.cardName + ".png"
+                        <div class="card-stack" id="card_@idx">
+                            <img src=@routes.Assets.versioned("images/cards/$a")>
+                        </div>
+                    }
+                    </div>
+                    <div class="row card-row">
+                        <div class="card-stack" id="card_6">
+                            <img src="@routes.Assets.versioned("images/cards/Mine.png")">
+                        </div>
+                        <div class="card-stack" id="card_7">
+                            <img src="@routes.Assets.versioned("images/cards/Remodel.png")">
+                        </div>
+                        <div class="card-stack" id="card_8">
+                            <img src="@routes.Assets.versioned("images/cards/Smithy.png")">
+                        </div>
+                        <div class="card-stack" id="card_9">
+                            <img src="@routes.Assets.versioned("images/cards/Village.png")">
+                        </div>
+                        <div class="card-stack" id="card_10">
+                            <img src="@routes.Assets.versioned("images/cards/Workshop.png")">
+                        </div>
+                    </div>
                 </div>
             }
-        </div>
-        <div class="row card-row">
-            <div class="card-stack" id="card_6">
-                <img src="@routes.Assets.versioned("images/cards/Mine.png")">
-            </div>
-            <div class="card-stack" id="card_7">
-                <img src="@routes.Assets.versioned("images/cards/Remodel.png")">
-            </div>
-            <div class="card-stack" id="card_8">
-                <img src="@routes.Assets.versioned("images/cards/Smithy.png")">
-            </div>
-            <div class="card-stack" id="card_9">
-                <img src="@routes.Assets.versioned("images/cards/Village.png")">
-            </div>
-            <div class="card-stack" id="card_10">
-                <img src="@routes.Assets.versioned("images/cards/Workshop.png")">
-            </div>
-        </div>
     </div>
-        }
+
+
+
+}
 }
