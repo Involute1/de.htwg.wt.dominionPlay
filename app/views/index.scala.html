@@ -56,6 +56,14 @@
         @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
             <div class="card-stack" id="card_@idx">
                 <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
+                ( @playingDeck.size )
+            </div>
+        }
+        </div>
+        <div class="row card-row">
+        @for((card, idx) <- playerHand.zipWithIndex) {
+            <div class="card-stack" id="handCard_@idx">
+                <img class="card_name" src="/assets/images/cards/@card.cardName">
             </div>
         }
         </div>
