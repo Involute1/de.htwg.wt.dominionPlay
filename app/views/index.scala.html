@@ -36,9 +36,6 @@
         } else {
         </div>
     </div>
-    <div class="info-box">
-
-    </div>
     <div class="container px-3 pb-md-4 mx-auto text-center">
         <div class="row gameboard">
             <div class="game-information my-3">
@@ -54,8 +51,8 @@
         </div>
         <div class="row card-row playing-decks">
         @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
-            <div class="card-stack" id="card_@idx">
-                <img onclick="cardClick()" class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
+            <div class="card-stack" onclick=cardClick(this) id="card_@idx">
+                <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
                 <br>( @playingDeck.size )
             </div>
         }
@@ -65,8 +62,8 @@
             <br>
             <div class="card-row hand-deck">
             @for((card, idx) <- playerHand.zipWithIndex) {
-                <div class="card-stack float-left" id="handCard_@idx">
-                    <img onclick="cardClick()" class="card_name" src="/assets/images/cards/@card.cardName">
+                <div class="card-stack float-left" onclick=cardClick(this) id="handCard_@idx">
+                    <img class="card_name" src="/assets/images/cards/@card.cardName">
                 </div>
             }
             </div>
