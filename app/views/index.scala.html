@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="row card-row playing-decks justify-content-center" id="playing-decks">
+        <div class="row card-row playing-decks justify-content-center pt-2" id="playing-decks">
         @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
             <div class="card-stack" onclick=cardClick(this) id="card_@idx">
                 <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
