@@ -4,6 +4,9 @@
     <div class="tui-container">
 
     @if(controllerString == "Please enter the number of Players, must be between 3 & 5:") {
+        <div class="dominion-image">
+            <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+        </div>
 
         <div class="input-tui">
             <form action="/dominion/process" method="get">
@@ -21,6 +24,10 @@
                 || controllerString == "Player 4 please enter your name:"
                 || controllerString == "Player 5 please enter your name:") {
 
+            <div class="dominion-image">
+                <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+            </div>
+
 
             <div class="tui-string">
                 <h2 class="tui-instructions">@controllerString</h2>
@@ -36,20 +43,20 @@
         } else {
         </div>
     </div>
-    <div class="container px-3 pb-md-4 mx-auto text-center">
+    <div class="container px-3 mx-auto text-center">
         <div class="row gameboard">
-            <div class="game-information my-3">
+            <div class="game-information mb-3">
                 <div class="info text-center">
-                    <h2 class="float-left mx-5">@playerName</h2>
-                    <h2 class="float-left mx-5">Turn: @turn</h2>
-                    <h2 class="float-left mx-5">Phase: @phase</h2>
-                    <h2 class="float-left mx-5">Actions: @playerActions</h2>
-                    <h2 class="float-left mx-5">Buys: @playerBuys</h2>
-                    <h2 class="float-left mx-5">Money: @playerMoney</h2>
+                    <h4 class="float-left mx-5">@playerName</h4>
+                    <h4 class="float-left mx-5">Turn: @turn</h4>
+                    <h4 class="float-left mx-5" id="phase">Phase: @phase</h4>
+                    <h4 class="float-left mx-5">Actions: @playerActions</h4>
+                    <h4 class="float-left mx-5">Buys: @playerBuys</h4>
+                    <h4 class="float-left mx-5">Money: @playerMoney</h4>
                 </div>
             </div>
         </div>
-        <div class="row card-row playing-decks">
+        <div class="row card-row playing-decks justify-content-center" id="playing-decks">
         @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
             <div class="card-stack" onclick=cardClick(this) id="card_@idx">
                 <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
@@ -57,10 +64,10 @@
             </div>
         }
         </div>
-        <div class="row hand-cards my-3">
-            <h2 class="mx-5">Handkarten</h2>
+        <div class="row hand-cards my-3" id="hand-decks">
+            <h4 class="mx-5">Handkarten</h4>
             <br>
-            <div class="card-row hand-deck">
+            <div class="card-row hand-decks">
             @for((card, idx) <- playerHand.zipWithIndex) {
                 <div class="card-stack float-left" onclick=cardClick(this) id="handCard_@idx">
                     <img class="card_name" src="/assets/images/cards/@card.cardName">
