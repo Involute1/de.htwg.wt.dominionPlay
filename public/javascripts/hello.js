@@ -3,6 +3,7 @@ jQuery(document).ready(function ($) {
     changeImageSrc();
     allowedClicks();
 
+
     function changeImageSrc() {
         $('.card_name').each(function () {
             var src = $(this).attr('src');
@@ -11,24 +12,26 @@ jQuery(document).ready(function ($) {
     }
 
     function allowedClicks() {
-        var phase = document.getElementById("phase").innerHTML;
-        var phaseType = phase.substr(phase.indexOf(" ") + 1);
-        if (phaseType === "Buyphase") {
-            $('#hand-decks .card_name').each(function () {
-                $(this).css('cursor', 'not-allowed');
-            });
-            $('#playing-decks .card_name').each(function () {
-                $(this).css('cursor', 'cursorurl');
-            });
-            $('#hand-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
-        } else if (phaseType === "Actionphase") {
-            $('#hand-decks .card_name').each(function () {
-                $(this).css('cursor', 'cursorurl');
-            });
-            $('#playing-decks .card_name').each(function () {
-                $(this).css('cursor', 'not-allowed');
-            });
-            $('#playing-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
+        if($("#phase").length !== 0) {
+            var phase = document.getElementById("phase").innerHTML;
+            var phaseType = phase.substr(phase.indexOf(" ") + 1);
+            if (phaseType === "Buyphase") {
+                $('#hand-decks .card_name').each(function () {
+                    $(this).css('cursor', 'not-allowed');
+                });
+                $('#playing-decks .card_name').each(function () {
+                    $(this).css('cursor', 'cursorurl');
+                });
+                $('#hand-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
+            } else if (phaseType === "Actionphase") {
+                $('#hand-decks .card_name').each(function () {
+                    $(this).css('cursor', 'cursorurl');
+                });
+                $('#playing-decks .card_name').each(function () {
+                    $(this).css('cursor', 'not-allowed');
+                });
+                $('#playing-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
+            }
         }
     }
 
@@ -36,10 +39,33 @@ jQuery(document).ready(function ($) {
         var cardId = cardElement.id.substr(cardElement.id.indexOf("_") + 1);
         var cardType = cardElement.id.substr(0, cardElement.id.indexOf('_'));
 
-        if (phaseType === "Buyphase" && cardType === "card") {
-            window.location = "http://localhost:9000/dominion/process?input=" + cardId;
-        } else if (phaseType === "Actionphase" && cardType === "handCard") {
+        if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
             window.location = "http://localhost:9000/dominion/process?input=" + cardId;
         }
     }
+
+    $(this).submit(function (event) {
+        event.preventDefault();
+
+
+        $.ajax({
+            url: "http://localhost:9000/dominion/process?input=3",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                alert("success:");
+            },
+            error: function (data) {
+                console.log(data);
+                alert("error: ");
+            }
+
+        });
+        changeImageSrc();
+        allowedClicks();
+
+        return false;
+    })
+
 });
