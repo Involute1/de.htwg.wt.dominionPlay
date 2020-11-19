@@ -3,7 +3,6 @@ jQuery(document).ready(function ($) {
     changeImageSrc();
     allowedClicks();
 
-
     function changeImageSrc() {
         $('.card_name').each(function () {
             var src = $(this).attr('src');
@@ -12,7 +11,7 @@ jQuery(document).ready(function ($) {
     }
 
     function allowedClicks() {
-        if($("#phase").length !== 0) {
+        if ($("#phase").length !== 0) {
             var phase = document.getElementById("phase").innerHTML;
             var phaseType = phase.substr(phase.indexOf(" ") + 1);
             if (phaseType === "Buyphase") {
@@ -53,18 +52,13 @@ jQuery(document).ready(function ($) {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
-                alert("success:");
+                alert("success:" + data);
             },
-            error: function (data) {
-                console.log(data);
-                alert("error: ");
+            error: function (xhr, error, status) {
+                console.log(xhr, status, error);
             }
 
         });
-        changeImageSrc();
-        allowedClicks();
-
         return false;
     })
 
