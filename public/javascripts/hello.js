@@ -46,20 +46,15 @@ jQuery(document).ready(function ($) {
     $(this).submit(function (event) {
         event.preventDefault();
 
-
         $.ajax({
-            url: "http://localhost:9000/dominion/process?input=3",
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                alert("success:" + data);
-            },
-            error: function (xhr, error, status) {
-                console.log(xhr, status, error);
-            }
+            method: "GET",
+            url: "/json",
+            dataType: "json",
 
+            success: function (result) {
+                alert(result);
+            }
         });
-        return false;
     })
 
 });

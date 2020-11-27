@@ -6,6 +6,7 @@ import de.htwg.wt.dominion.controller.maincontroller.Controller
 import de.htwg.wt.dominion.{CardMain, Dominion, DominionModule, PlayerMain}
 import javax.inject.Inject
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
+import play.api.libs.json.{JsNumber, JsObject, JsValue, Json, Writes}
 
 class DominionController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
@@ -36,6 +37,10 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
 
   def about(): Action[AnyContent] = Action {
     Ok{views.html.about()}
+  }
+
+  def toJson: Action[AnyContent] = Action {
+    Ok(Json.toJson(dominionController))
   }
 
 }
