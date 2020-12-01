@@ -47,12 +47,12 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
-        if (json_input === "Please enter the number of Players, must be between 3 & 5:") {
+        if (json_input.html === "Please enter the number of Players, must be between 3 & 5:") {
             $('.player_selection').show();
             $('.player_names').hide();
             $('.game').hide();
             $('.tui-instructions').html(json_input)
-        } else if (json_input === "Player 1 please enter your name:"
+        } else if (json_input.html === "Player 1 please enter your name:"
             || json_input === "Player 2 please enter your name:"
             || json_input === "Player 3 please enter your name:"
             || json_input === "Player 4 please enter your name:"
@@ -66,8 +66,6 @@ jQuery(document).ready(function ($) {
             $('.player_names').hide();
             $('.game').show();
             $('.tui-instructions').html(json_input)
-
-
         }
     }
 
@@ -84,7 +82,6 @@ jQuery(document).ready(function ($) {
             processData: false,
 
             success: function (data) {
-                console.log(data)
                 check_string(data)
             },
             error: function (data) {

@@ -45,17 +45,35 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   def toJson(input: String): Action[AnyContent] = Action {
     dominionController.eval(input)
 
-    val json: JsValue = Json.parse("""
+    var json: JsValue = Json.parse("""
       {
-        "html" : """ + dominionController.toHTML + """,
-        "playerActions" : """ + dominionController.getCurrentPlayerActions + """,
-        "playerBuys" : """ + dominionController.getCurrentPlayerBuys + """,
-        "playerMoney" : """ + dominionController.getCurrentPlayerMoney + """,
-        "controllerPhase" : """ + dominionController.getCurrentPhaseAsString + """,
-        "turn" : """ + dominionController.getTurn + """,
-        "playerName" : """ + dominionController.getCurrentPlayerName + """
+        "html" : """ + Json.toJson(dominionController.toHTML) + """,
+        "playerActions" : """ + 1 + """,
+        "playerBuys" : """ + 1 + """,
+        "playerMoney" : """ + 0 + """,
+        "controllerPhase" : """ + null + """,
+        "turn" : """ + 0 + """,
+        "playerName" : """ + null + """,
+        "playerHand" : """ + null + """,
+        "playingDecks" : """ + null + """
       }
     """)
+
+    if (dominionController.getControllerStateAsString == "ActionState" || dominionController.getControllerStateAsString == "BuyState") {
+          json = Json.parse("""
+            {
+              "html" : """ + Json.toJson(dominionController.toHTML) + """,
+              "playerActions" : """ + dominionController.getCurrentPlayerActions + """,
+              "playerBuys" : """ + dominionController.getCurrentPlayerBuys + """,
+              "playerMoney" : """ + dominionController.getCurrentPlayerMoney + """,
+              "controllerPhase" : """ + dominionController.getCurrentPhaseAsString + """,
+              "turn" : """ + dominionController.getTurn + """,
+              "playerName" : """ + dominionController.getCurrentPlayerName + """,
+              "playerHand" : """ + dominionController.getCurrentPlayerHand + """,
+              "playingDecks" : """ + dominionController.getPlayingDecks + """
+            }
+          """)
+    }
     Ok(json)
   }
 }
