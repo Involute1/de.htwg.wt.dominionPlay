@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
             $('.player_selection').show();
             $('.player_names').hide();
             $('.game').hide();
-            $('.tui-instructions').html(json_input)
+            $('.tui-instructions').html(json_input.html)
         } else if (json_input.html === "Player 1 please enter your name:"
             || json_input === "Player 2 please enter your name:"
             || json_input === "Player 3 please enter your name:"
@@ -60,12 +60,19 @@ jQuery(document).ready(function ($) {
             $('.player_selection').hide();
             $('.player_names').show();
             $('.game').hide();
-            $('.tui-instructions').html(json_input)
+            $('.tui-instructions').html(json_input.html)
         } else {
             $('.player_selection').hide();
             $('.player_names').hide();
             $('.game').show();
-            $('.tui-instructions').html(json_input)
+            $('.tui-instructions').html(json_input.html)
+
+            $('#playerName').html(json_input.playerName)
+            $('#playerMoney').html(json_input.playerMoney)
+            $('#turn').html(json_input.turn)
+            $('#phase').html(json_input.controllerPhase)
+            $('#playerActions').html(json_input.playerActions)
+            $('#playerBuys').html(json_input.playerBuys)
         }
     }
 
