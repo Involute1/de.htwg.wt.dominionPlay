@@ -58,12 +58,13 @@ jQuery(document).ready(function ($) {
         } else {
             $('.player_names').hide();
             $('.game').show();
-            $('#playerName').html(json_input.playerName)
-            $('#playerMoney').html(json_input.playerMoney)
-            $('#turn').html(json_input.turn)
-            $('#phase').html(json_input.controllerPhase)
-            $('#playerActions').html(json_input.playerActions)
-            $('#playerBuys').html(json_input.playerBuys)
+            $('#playerName').html("Name: " + json_input.playerName)
+            $('#playerMoney').html("Money: " + json_input.playerMoney)
+            $('#turn').html("Turn: " + json_input.turn)
+            $('#phase').html("Phase: " + json_input.controllerPhase)
+            $('#playerActions').html("Actions: " + json_input.playerActions)
+            $('#playerBuys').html("Buys: " + json_input.playerBuys)
+
             $('#hand-decks').html(json_input.playerHand)
             $('#playing-decks').html(json_input.playingDecks)
         }
