@@ -3,6 +3,9 @@ jQuery(document).ready(function ($) {
     changeImageSrc();
     allowedClicks();
 
+    $('.player_names').hide();
+    $('.game').hide();
+
     function changeImageSrc() {
         $('.card_name').each(function () {
             var src = $(this).attr('src');
@@ -43,18 +46,54 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    $(this).submit(function (event) {
+    function check_string(json_input) {
+        if (json_input === "Please enter the number of Players, must be between 3 & 5:") {
+            $('.player_selection').show();
+            $('.player_names').hide();
+            $('.game').hide();
+            $('.tui-instructions').html(json_input)
+        } else if (json_input === "Player 1 please enter your name:"
+            || json_input === "Player 2 please enter your name:"
+            || json_input === "Player 3 please enter your name:"
+            || json_input === "Player 4 please enter your name:"
+            || json_input === "Player 5 please enter your name:") {
+            $('.player_selection').hide();
+            $('.player_names').show();
+            $('.game').hide();
+            $('.tui-instructions').html(json_input)
+        } else {
+            $('.player_selection').hide();
+            $('.player_names').hide();
+            $('.game').show();
+
+            $('.tui-instructions').html(json_input)
+
+
+        }
+    }
+
+    $(".game_container button").click(function (event) {
+
         event.preventDefault();
+        var title = $(this).attr("value");
+        console.log("/dominion/process?input=" + title)
 
         $.ajax({
             method: "GET",
-            url: "/json",
+            url: "/json?input=" + title,
             dataType: "json",
+            data: title,
+            processData: false,
 
-            success: function (result) {
-                alert(result);
+            success: function (data) {
+                console.log(data)
+                check_string(data)
+            },
+            error: function (data) {
+                alert("Error")
             }
         });
     })
+
 
 });

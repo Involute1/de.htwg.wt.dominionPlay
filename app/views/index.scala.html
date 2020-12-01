@@ -1,80 +1,78 @@
 @import de.htwg.wt.dominion.model.cardComponent.cardBaseImpl.Card
 @(controllerString: String)(playerActions: Int)(playerBuys: Int)(playerMoney: Int)(phase: String)(turn: Int)(playerName: String)(playerHand: List[Card])(playingDecks: List[List[Card]])
-@main("Welcome to Dominion") {
-    <div class="tui-container">
+    @main("Welcome to Dominion") {
+        <div class="game_container">
+            <div class="tui-container">
 
-    @if(controllerString == "Please enter the number of Players, must be between 3 & 5:") {
-        <div class="dominion-image">
-            <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-        </div>
 
-        <div class="input-tui">
-            <form action="/dominion/process" method="get" id="player_amount">
-                <div class="row justify-content-md-center">
-                    <button type="submit" name="input" value="3" class="btn btn-primary mx-2">3 Player</button>
-                    <button type="submit" name="input" value="4" class="btn btn-primary mx-2">4 Player</button>
-                    <button type="submit" name="input" value="5" class="btn btn-primary mx-2">5 Player</button>
-                </div>
-            </form>
-        </div>
-    } else {
-        @if(controllerString == "Player 1 please enter your name:"
-                || controllerString == "Player 2 please enter your name:"
-                || controllerString == "Player 3 please enter your name:"
-                || controllerString == "Player 4 please enter your name:"
-                || controllerString == "Player 5 please enter your name:") {
-
-            <div class="dominion-image">
-                <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-            </div>
-
-            <div class="tui-string">
-                <h2 class="tui-instructions">@controllerString</h2>
-            </div>
-            <div class="input-tui">
-                <form action="/dominion/process" method="get">
-                    <div class="row justify-content-md-center">
-                        <input type="text" class="form-control" name="input">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                <div class="player_selection">
+                    <div class="dominion-image">
+                        <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
                     </div>
-                </form>
+
+                    <div class="input-tui" id="player_amount">
+                        <div class="row justify-content-md-center">
+                            <button name="input" value="3" id="player3" class="btn btn-primary mx-2">3 Player</button>
+                            <button name="input" value="4" id="player4" class="btn btn-primary mx-2">4 Player</button>
+                            <button name="input" value="5" id="player5" class="btn btn-primary mx-2">5 Player</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="player_names">
+
+                    <div class="dominion-image">
+                        <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+                    </div>
+
+                    <div class="tui-string">
+                        <h2 class="tui-instructions">@controllerString</h2>
+                    </div>
+                    <div class="input-tui">
+                        <form action="/dominion/process" method="get">
+                            <div class="row justify-content-md-center">
+                                <input type="text" class="form-control" name="input">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        } else {
-        </div>
-    </div>
-    <div class="container px-3 mx-auto text-center">
-        <div class="row gameboard">
-            <div class="game-information mb-3">
-                <div class="info text-center">
-                    <h4 class="float-left mx-5">@playerName</h4>
-                    <h4 class="float-left mx-5">Money: @playerMoney</h4>
-                    <h4 class="float-left mx-5">Turn: @turn</h4>
-                    <h4 class="float-left mx-5" id="phase">Phase: @phase</h4>
-                    <h4 class="float-left mx-5">Actions: @playerActions</h4>
-                    <h4 class="float-left mx-5">Buys: @playerBuys</h4>
+            <div class="game">
+                <div class="container px-3 mx-auto text-center">
+                    <div class="row gameboard">
+                        <div class="game-information mb-3">
+                            <div class="info text-center">
+                                <h4 class="float-left mx-5">@playerName</h4>
+                                <h4 class="float-left mx-5">Money: @playerMoney</h4>
+                                <h4 class="float-left mx-5">Turn: @turn</h4>
+                                <h4 class="float-left mx-5" id="phase">Phase: @phase</h4>
+                                <h4 class="float-left mx-5">Actions: @playerActions</h4>
+                                <h4 class="float-left mx-5">Buys: @playerBuys</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row card-row playing-decks justify-content-center pt-2" id="playing-decks">
+                    @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
+                        <div class="card-stack" onclick=cardClick(this) id="card_@idx">
+                            <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
+                            <br>( @playingDeck.size )
+                        </div>
+                    }
+                    </div>
+                    <div class="row hand-cards my-3" id="hand-decks">
+                        <h4 class="mx-5">Handkarten</h4>
+                        <br>
+                        <div class="card-row hand-decks">
+                        @for((card, idx) <- playerHand.zipWithIndex) {
+                            <div class="card-stack float-left" onclick=cardClick(this) id="handCard_@idx">
+                                <img class="card_name" src="/assets/images/cards/@card.cardName">
+                            </div>
+                        }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row card-row playing-decks justify-content-center pt-2" id="playing-decks">
-        @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
-            <div class="card-stack" onclick=cardClick(this) id="card_@idx">
-                <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
-                <br>( @playingDeck.size )
-            </div>
-        }
-        </div>
-        <div class="row hand-cards my-3" id="hand-decks">
-            <h4 class="mx-5">Handkarten</h4>
-            <br>
-            <div class="card-row hand-decks">
-            @for((card, idx) <- playerHand.zipWithIndex) {
-                <div class="card-stack float-left" onclick=cardClick(this) id="handCard_@idx">
-                    <img class="card_name" src="/assets/images/cards/@card.cardName">
-                </div>
-            }
-            </div>
-        </div>
-    </div>
-}
-}
-}
+    }

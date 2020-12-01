@@ -39,8 +39,8 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
     Ok{views.html.about()}
   }
 
-  def toJson: Action[AnyContent] = Action {
-    Ok(Json.toJson(dominionController))
+  def toJson(input: String): Action[AnyContent] = Action {
+    dominionController.eval(input)
+    Ok(Json.toJson(dominionController.toHTML))
   }
-
 }
