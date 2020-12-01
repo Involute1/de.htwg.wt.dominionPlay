@@ -2,31 +2,34 @@
 @(controllerString: String)(playerActions: Int)(playerBuys: Int)(playerMoney: Int)(phase: String)(turn: Int)(playerName: String)(playerHand: List[Card])(playingDecks: List[List[Card]])
     @main("Welcome to Dominion") {
         <div class="game_container">
-            <div class="tui-container">
+            <div class="pricing-header px-3 mx-auto text-center">
+                <div class="tui-container">
 
-                <div class="dominion-image">
-                    <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-                </div>
 
-                <div class="player_selection">
-                    <div class="input-tui" id="player_amount">
-                        <div class="row justify-content-md-center">
-                            <button name="input" value="3" id="player3" class="btn btn-primary mx-2">3 Player</button>
-                            <button name="input" value="4" id="player4" class="btn btn-primary mx-2">4 Player</button>
-                            <button name="input" value="5" id="player5" class="btn btn-primary mx-2">5 Player</button>
+                    <div class="dominion-image">
+                        <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
+                    </div>
+
+                    <div class="player_selection">
+                        <div class="input-tui" id="player_amount">
+                            <div class="row justify-content-md-center">
+                                <button name="input" value="3" id="player3" class="btn btn-primary mx-2">3 Player</button>
+                                <button name="input" value="4" id="player4" class="btn btn-primary mx-2">4 Player</button>
+                                <button name="input" value="5" id="player5" class="btn btn-primary mx-2">5 Player</button>
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
 
-                <div class="player_names">
-                    <div class="tui-string">
-                        <h2 class="tui-instructions">@controllerString</h2>
-                    </div>
-                    <div class="input-tui">
-                        <div class="row justify-content-md-center">
-                            <input type="text" class="form-control" name="input">
-                            <button class="btn btn-primary" value="set_name">Send</button>
+                    <div class="player_names">
+                        <div class="tui-string">
+                            <h2 class="tui-instructions">@controllerString</h2>
+                        </div>
+                        <div class="input-tui">
+                            <div class="row justify-content-md-center">
+                                <input type="text" class="form-control" name="input">
+                                <button class="btn btn-primary" value="set_name">Send</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +61,7 @@
                         <br>
                         <div class="card-row hand-decks">
                         @for((card, idx) <- playerHand.zipWithIndex) {
-                            <div class="card-stack float-left" onclick=cardClick(this) id="handCard_@idx">
+                            <div class="card-stack float-left hand_single_card" id="handCard_@idx" onclick=cardClick(this)>
                                 <img class="card_name" src="/assets/images/cards/@card.cardName">
                             </div>
                         }

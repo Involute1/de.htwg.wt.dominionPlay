@@ -1,17 +1,9 @@
 jQuery(document).ready(function ($) {
 
-    changeImageSrc();
     allowedClicks();
 
     $('.player_names').hide();
     $('.game').hide();
-
-    function changeImageSrc() {
-        $('.card_name').each(function () {
-            var src = $(this).attr('src');
-            $(this).attr('src', src + '.png')
-        });
-    }
 
     function allowedClicks() {
         if ($("#phase").length !== 0) {
@@ -37,12 +29,31 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function cardClick(cardElement) {
-        var cardId = cardElement.id.substr(cardElement.id.indexOf("_") + 1);
-        var cardType = cardElement.id.substr(0, cardElement.id.indexOf('_'));
+
+
+    function cardClick() {
+        var phase = document.getElementById("phase").innerHTML;
+        var phaseType = phase.substr(phase.indexOf(" ") + 1);
+        cardId = $(this).id.substr($(this).id.indexOf("_") + 1);
+        cardType = $(this).id.substr(0, $(this).id.indexOf('_'));
 
         if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
-            window.location = "http://localhost:9000/dominion/process?input=" + cardId;
+            $.ajax({
+                method: "GET",
+                url: "/json?input=" + cardId,
+                dataType: "json",
+                data: cardId,
+                processData: false,
+
+                success: function (data) {
+                    check_string(data)
+                    allowedClicks()
+                },
+                error: function (data) {
+                    alert("Error")
+                }
+            });
+
         }
     }
 
@@ -57,6 +68,7 @@ jQuery(document).ready(function ($) {
         } else {
             $('.player_names').hide();
             $('.game').show();
+            $('.dominion-image').hide();
             $('#playerName').html("Name: " + json_input.playerName)
             $('#playerMoney').html("Money: " + json_input.playerMoney)
             $('#turn').html("Turn: " + json_input.turn)
@@ -65,25 +77,13 @@ jQuery(document).ready(function ($) {
             $('#playerBuys').html("Buys: " + json_input.playerBuys)
 
             for (i = 0; i < json_input.playingDecks[0].length; i++) {
-                var div = document.createElement("div");
-                div.id = "card_" + i;
-                div.class = "card-stack";
-                var elem = document.createElement("img");
-                elem.setAttribute("src", "/assets/images/cards/" + json_input.playingDecks[0][i][0].cardName + ".png");
-                elem.setAttribute("class", "card_name");
-                div.appendChild(elem)
-                document.getElementById("playing-decks").appendChild(div);
+                $('.playing-decks').append('<div id="card_' + i + '" class="card-stack" onclick=cardClick(this)><img class="card_name" src="/assets/images/cards/' + json_input.playingDecks[0][i][0].cardName + '.png"></div>');
             }
 
             for (i = 0; i < json_input.playerHand[0].length; i++) {
-                var div = document.createElement("div");
-                div.id = "handCard_" + i;
-                div.class = "card-stack float-left";
-                var elem = document.createElement("img");
-                elem.setAttribute("src", "/assets/images/cards/" + json_input.playerHand[0][i].cardName + ".png");
-                elem.setAttribute("class", "card_name");
-                div.appendChild(elem);
-                document.getElementsByClassName("card-row hand-decks")[0].appendChild(div);
+                $('.hand-decks').append('<div id="handCard_' + i + '" class="card-stack float-left" onclick=cardClick(this)><img class="card_name" src="/assets/images/cards/' + json_input.playerHand[0][i].cardName + '.png"></div>')
+
+
             }
         }
         $('.tui-instructions').html(json_input.html)
@@ -107,6 +107,7 @@ jQuery(document).ready(function ($) {
 
             success: function (data) {
                 check_string(data)
+                allowedClicks()
             },
             error: function (data) {
                 alert("Error")
