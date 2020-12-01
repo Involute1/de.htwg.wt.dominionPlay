@@ -66,6 +66,8 @@ jQuery(document).ready(function ($) {
         }
 
         $('.tui-instructions').html(json_input.html)
+        $('.form-control').val('');
+
     }
 
     $(".game_container button").click(function (event) {
