@@ -47,26 +47,16 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
-        if (json_input.html === "Please enter the number of Players, must be between 3 & 5:") {
-            $('.player_selection').show();
-            $('.player_names').hide();
-            $('.game').hide();
-            $('.tui-instructions').html(json_input.html)
-        } else if (json_input.html === "Player 1 please enter your name:"
-            || json_input === "Player 2 please enter your name:"
-            || json_input === "Player 3 please enter your name:"
-            || json_input === "Player 4 please enter your name:"
-            || json_input === "Player 5 please enter your name:") {
+        if (json_input.html === "Player 1 please enter your name:"
+            || json_input.html === "Player 2 please enter your name:"
+            || json_input.html === "Player 3 please enter your name:"
+            || json_input.html === "Player 4 please enter your name:"
+            || json_input.html === "Player 5 please enter your name:") {
             $('.player_selection').hide();
             $('.player_names').show();
-            $('.game').hide();
-            $('.tui-instructions').html(json_input.html)
         } else {
-            $('.player_selection').hide();
             $('.player_names').hide();
             $('.game').show();
-            $('.tui-instructions').html(json_input.html)
-
             $('#playerName').html(json_input.playerName)
             $('#playerMoney').html(json_input.playerMoney)
             $('#turn').html(json_input.turn)
@@ -74,6 +64,8 @@ jQuery(document).ready(function ($) {
             $('#playerActions').html(json_input.playerActions)
             $('#playerBuys').html(json_input.playerBuys)
         }
+
+        $('.tui-instructions').html(json_input.html)
     }
 
     $(".game_container button").click(function (event) {
