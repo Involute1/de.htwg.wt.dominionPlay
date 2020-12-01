@@ -47,7 +47,6 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
-        console.log(json_input)
         if (json_input.html === "Player 1 please enter your name:"
             || json_input.html === "Player 2 please enter your name:"
             || json_input.html === "Player 3 please enter your name:"
@@ -65,9 +64,7 @@ jQuery(document).ready(function ($) {
             $('#playerActions').html("Actions: " + json_input.playerActions)
             $('#playerBuys').html("Buys: " + json_input.playerBuys)
 
-
             for (i = 0; i < json_input.playingDecks[0].length; i++) {
-                console.log("Deck: " + json_input.playingDecks[0][i][0].cardName + " Size: " + json_input.playingDecks[0][i].length);
                 var div = document.createElement("div");
                 div.id = "card_" + i;
                 div.class = "card-stack";
@@ -79,7 +76,6 @@ jQuery(document).ready(function ($) {
             }
 
             for (i = 0; i < json_input.playerHand[0].length; i++) {
-                console.log("Hand: " + json_input.playerHand[0][i].cardName + " id " + i);
                 var div = document.createElement("div");
                 div.id = "handCard_" + i;
                 div.class = "card-stack float-left";
@@ -90,10 +86,8 @@ jQuery(document).ready(function ($) {
                 document.getElementsByClassName("card-row hand-decks")[0].appendChild(div);
             }
         }
-
         $('.tui-instructions').html(json_input.html)
         $('.form-control').val('');
-
     }
 
     $(".game_container button").click(function (event) {
@@ -103,8 +97,6 @@ jQuery(document).ready(function ($) {
         if (title === "set_name") {
             title = $(this).prev().val();
         }
-
-        console.log("/json?input=" + title)
 
         $.ajax({
             method: "GET",
@@ -121,6 +113,4 @@ jQuery(document).ready(function ($) {
             }
         });
     })
-
-
 });
