@@ -75,28 +75,12 @@ jQuery(document).ready(function ($) {
     $(".game_container button").click(function (event) {
         event.preventDefault();
         var title = $(this).attr("value");
-        console.log("/dominion/process?input=" + title)
 
-        $.ajax({
-            method: "GET",
-            url: "/json?input=" + title,
-            dataType: "json",
-            data: title,
-            processData: false,
+        if (title === "set_name") {
+            title = $(this).prev().val();
+        }
 
-            success: function (data) {
-                check_string(data)
-            },
-            error: function (data) {
-                alert("Error")
-            }
-        });
-    })
-
-    $(".game_container input").click(function (event) {
-        event.preventDefault();
-        var title = $(this).attr("value");
-        console.log("/dominion/process?input=" + title)
+        console.log("/json?input=" + title)
 
         $.ajax({
             method: "GET",
