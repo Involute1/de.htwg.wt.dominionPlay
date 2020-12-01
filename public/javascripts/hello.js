@@ -47,16 +47,17 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
+        console.log(json_input)
         if (json_input.html === "Please enter the number of Players, must be between 3 & 5:") {
             $('.player_selection').show();
             $('.player_names').hide();
             $('.game').hide();
             $('.tui-instructions').html(json_input.html)
         } else if (json_input.html === "Player 1 please enter your name:"
-            || json_input === "Player 2 please enter your name:"
-            || json_input === "Player 3 please enter your name:"
-            || json_input === "Player 4 please enter your name:"
-            || json_input === "Player 5 please enter your name:") {
+            || json_input.html === "Player 2 please enter your name:"
+            || json_input.html === "Player 3 please enter your name:"
+            || json_input.html === "Player 4 please enter your name:"
+            || json_input.html === "Player 5 please enter your name:") {
             $('.player_selection').hide();
             $('.player_names').show();
             $('.game').hide();
