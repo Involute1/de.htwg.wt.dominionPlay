@@ -64,7 +64,8 @@ jQuery(document).ready(function ($) {
             $('#phase').html(json_input.controllerPhase)
             $('#playerActions').html(json_input.playerActions)
             $('#playerBuys').html(json_input.playerBuys)
-
+            $('#hand-decks').html(json_input.playerHand)
+            $('#playing-decks').html(json_input.playingDecks)
         }
 
         $('.tui-instructions').html(json_input.html)
