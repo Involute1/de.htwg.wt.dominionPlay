@@ -3,10 +3,13 @@ package controllers
 import com.google.inject.{Guice, Injector}
 import de.htwg.wt.dominion.controller.IController
 import de.htwg.wt.dominion.controller.maincontroller.Controller
+import de.htwg.wt.dominion.model.cardComponent.cardBaseImpl.Card
 import de.htwg.wt.dominion.{CardMain, Dominion, DominionModule, PlayerMain}
 import javax.inject.Inject
+import play.api.libs.functional.syntax.{toFunctionalBuilderOps, unlift}
+import play.api.libs.json.Format.GenericFormat
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
-import play.api.libs.json.{JsNumber, JsObject, JsValue, Json, Writes}
+import play.api.libs.json.{JsNumber, JsObject, JsPath, JsValue, Json, OFormat, Writes}
 
 class DominionController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
@@ -41,6 +44,18 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
 
   def toJson(input: String): Action[AnyContent] = Action {
     dominionController.eval(input)
-    Ok(Json.toJson(dominionController.toHTML))
+
+    val json: JsValue = Json.parse("""
+      {
+        "html" : """ + dominionController.toHTML + """,
+        "playerActions" : """ + dominionController.getCurrentPlayerActions + """,
+        "playerBuys" : """ + dominionController.getCurrentPlayerBuys + """,
+        "playerMoney" : """ + dominionController.getCurrentPlayerMoney + """,
+        "controllerPhase" : """ + dominionController.getCurrentPhaseAsString + """,
+        "turn" : """ + dominionController.getTurn + """,
+        "playerName" : """ + dominionController.getCurrentPlayerName + """
+      }
+    """)
+    Ok(json)
   }
 }

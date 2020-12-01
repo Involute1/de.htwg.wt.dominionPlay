@@ -65,7 +65,6 @@ jQuery(document).ready(function ($) {
             $('.player_selection').hide();
             $('.player_names').hide();
             $('.game').show();
-
             $('.tui-instructions').html(json_input)
 
 
@@ -73,7 +72,6 @@ jQuery(document).ready(function ($) {
     }
 
     $(".game_container button").click(function (event) {
-
         event.preventDefault();
         var title = $(this).attr("value");
         console.log("/dominion/process?input=" + title)
