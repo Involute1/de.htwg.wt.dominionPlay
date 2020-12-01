@@ -65,8 +65,30 @@ jQuery(document).ready(function ($) {
             $('#playerActions').html("Actions: " + json_input.playerActions)
             $('#playerBuys').html("Buys: " + json_input.playerBuys)
 
-            $('#hand-decks').html(json_input.playerHand)
-            $('#playing-decks').html(json_input.playingDecks)
+
+            for (i = 0; i < json_input.playingDecks[0].length; i++) {
+                console.log("Deck: " + json_input.playingDecks[0][i][0].cardName + " Size: " + json_input.playingDecks[0][i].length);
+                var div = document.createElement("div");
+                div.id = "card_" + i;
+                div.class = "card-stack";
+                var elem = document.createElement("img");
+                elem.setAttribute("src", "/assets/images/cards/" + json_input.playingDecks[0][i][0].cardName + ".png");
+                elem.setAttribute("class", "card_name");
+                div.appendChild(elem)
+                document.getElementById("playing-decks").appendChild(div);
+            }
+
+            for (i = 0; i < json_input.playerHand[0].length; i++) {
+                console.log("Hand: " + json_input.playerHand[0][i].cardName + " id " + i);
+                var div = document.createElement("div");
+                div.id = "handCard_" + i;
+                div.class = "card-stack float-left";
+                var elem = document.createElement("img");
+                elem.setAttribute("src", "/assets/images/cards/" + json_input.playerHand[0][i].cardName + ".png");
+                elem.setAttribute("class", "card_name");
+                div.appendChild(elem);
+                document.getElementsByClassName("card-row hand-decks")[0].appendChild(div);
+            }
         }
 
         $('.tui-instructions').html(json_input.html)
