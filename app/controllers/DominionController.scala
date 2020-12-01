@@ -70,7 +70,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
               "turn" : """ + dominionController.getTurn + """,
               "playerName" : """ + Json.toJson(dominionController.getCurrentPlayerName) + """,
               "playerHand" : """ + Json.arr(dominionController.getCurrentPlayerHand) + """,
-              "playingDecks" : """ + null + """
+              "playingDecks" : """ + Json.arr(dominionController.getPlayingDecks) + """
             }
           """)
     }

@@ -47,6 +47,7 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
+        console.log(json_input)
         if (json_input.html === "Player 1 please enter your name:"
             || json_input.html === "Player 2 please enter your name:"
             || json_input.html === "Player 3 please enter your name:"
@@ -63,6 +64,7 @@ jQuery(document).ready(function ($) {
             $('#phase').html(json_input.controllerPhase)
             $('#playerActions').html(json_input.playerActions)
             $('#playerBuys').html(json_input.playerBuys)
+
         }
 
         $('.tui-instructions').html(json_input.html)
