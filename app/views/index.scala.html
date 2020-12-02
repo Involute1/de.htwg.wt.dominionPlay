@@ -13,9 +13,9 @@
                     <div class="player_selection">
                         <div class="input-tui" id="player_amount">
                             <div class="row justify-content-md-center">
-                                <button name="input" value="3" id="player3" class="btn btn-primary mx-2">3 Player</button>
-                                <button name="input" value="4" id="player4" class="btn btn-primary mx-2">4 Player</button>
-                                <button name="input" value="5" id="player5" class="btn btn-primary mx-2">5 Player</button>
+                                <button name="input" value="3" id="player3" class="btn btn-primary mx-2 player-amount">3 Player</button>
+                                <button name="input" value="4" id="player4" class="btn btn-primary mx-2 player-amount">4 Player</button>
+                                <button name="input" value="5" id="player5" class="btn btn-primary mx-2 player-amount">5 Player</button>
                             </div>
 
                         </div>
@@ -39,32 +39,23 @@
                     <div class="row gameboard">
                         <div class="game-information mb-3">
                             <div class="info text-center">
-                                <h4 class="float-left mx-5" id="playerName">@playerName</h4>
-                                <h4 class="float-left mx-5" id="playerMoney">Money: @playerMoney</h4>
-                                <h4 class="float-left mx-5" id="turn">Turn: @turn</h4>
-                                <h4 class="float-left mx-5" id="phase">Phase: @phase</h4>
-                                <h4 class="float-left mx-5" id="playerActions">Actions: @playerActions</h4>
-                                <h4 class="float-left mx-5" id="playerBuys">Buys: @playerBuys</h4>
+                                <h4 class="float-left mx-5" id="playerName"></h4>
+                                <h4 class="float-left mx-5" id="playerMoney"></h4>
+                                <h4 class="float-left mx-5" id="turn"></h4>
+                                <h4 class="float-left mx-5" id="phase"></h4>
+                                <h4 class="float-left mx-5" id="playerActions"></h4>
+                                <h4 class="float-left mx-5" id="playerBuys"></h4>
                             </div>
                         </div>
                     </div>
                     <div class="row card-row playing-decks justify-content-center pt-2" id="playing-decks">
-                    @for((playingDeck, idx) <- playingDecks.zipWithIndex) {
-                        <div class="card-stack" onclick=cardClick(this) id="card_@idx">
-                            <img class="card_name" src="/assets/images/cards/@playingDeck.head.cardName">
-                            <br>( @playingDeck.size )
-                        </div>
-                    }
+
                     </div>
                     <div class="row hand-cards my-3" id="hand-decks">
                         <h4 class="mx-5">Handkarten</h4>
                         <br>
                         <div class="card-row hand-decks">
-                        @for((card, idx) <- playerHand.zipWithIndex) {
-                            <div class="card-stack float-left hand_single_card" id="handCard_@idx" onclick=cardClick(this)>
-                                <img class="card_name" src="/assets/images/cards/@card.cardName">
-                            </div>
-                        }
+
                         </div>
                     </div>
                 </div>

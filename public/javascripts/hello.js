@@ -1,7 +1,5 @@
 jQuery(document).ready(function ($) {
 
-    allowedClicks();
-
     $('.player_names').hide();
     $('.game').hide();
 
@@ -68,10 +66,9 @@ jQuery(document).ready(function ($) {
         $('.form-control').val('');
     }
 
-    $(".game_container button").click(function (event) {
-        event.preventDefault();
-        var title = $(this).attr("value");
+    $(".game_container button").click(function () {
 
+        var title = $(this).attr("value");
         if (title === "set_name") {
             title = $(this).prev().val();
         }
@@ -93,7 +90,7 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    $(document).on('click', '.card-stack', function(){
+    $(document).on('click', '.card-stack', function () {
 
         var phase = document.getElementById("phase").innerHTML;
         var phaseType = phase.substr(phase.indexOf(" ") + 1);
