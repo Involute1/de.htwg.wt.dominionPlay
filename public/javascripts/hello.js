@@ -17,6 +17,8 @@ jQuery(document).ready(function ($) {
                     $(this).css('cursor', 'cursorurl');
                 });
                 $('#hand-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
+                $('#playing-decks').css("background", "none");
+
             } else if (phaseType === "Actionphase") {
                 $('#hand-decks .card_name').each(function () {
                     $(this).css('cursor', 'cursorurl');
@@ -24,36 +26,9 @@ jQuery(document).ready(function ($) {
                 $('#playing-decks .card_name').each(function () {
                     $(this).css('cursor', 'not-allowed');
                 });
+                $('#hand-decks').css("background", "none");
                 $('#playing-decks').css("background-image", "url(http://localhost:9000/assets/images/bg.png)");
             }
-        }
-    }
-
-
-
-    function cardClick() {
-        var phase = document.getElementById("phase").innerHTML;
-        var phaseType = phase.substr(phase.indexOf(" ") + 1);
-        cardId = $(this).id.substr($(this).id.indexOf("_") + 1);
-        cardType = $(this).id.substr(0, $(this).id.indexOf('_'));
-
-        if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
-            $.ajax({
-                method: "GET",
-                url: "/json?input=" + cardId,
-                dataType: "json",
-                data: cardId,
-                processData: false,
-
-                success: function (data) {
-                    check_string(data)
-                    allowedClicks()
-                },
-                error: function (data) {
-                    alert("Error")
-                }
-            });
-
         }
     }
 
@@ -76,12 +51,15 @@ jQuery(document).ready(function ($) {
             $('#playerActions').html("Actions: " + json_input.playerActions)
             $('#playerBuys').html("Buys: " + json_input.playerBuys)
 
+            jQuery('.playing-decks').html('');
+            jQuery('.hand-decks').html('');
+
             for (i = 0; i < json_input.playingDecks[0].length; i++) {
-                $('.playing-decks').append('<div id="card_' + i + '" class="card-stack" onclick=cardClick(this)><img class="card_name" src="/assets/images/cards/' + json_input.playingDecks[0][i][0].cardName + '.png"></div>');
+                $('.playing-decks').append('<div id="card_' + i + '" class="card-stack"><img class="card_name" src="/assets/images/cards/' + json_input.playingDecks[0][i][0].cardName + '.png"></div>');
             }
 
             for (i = 0; i < json_input.playerHand[0].length; i++) {
-                $('.hand-decks').append('<div id="handCard_' + i + '" class="card-stack float-left" onclick=cardClick(this)><img class="card_name" src="/assets/images/cards/' + json_input.playerHand[0][i].cardName + '.png"></div>')
+                $('.hand-decks').append('<div id="handCard_' + i + '" class="card-stack float-left"><img class="card_name" src="/assets/images/cards/' + json_input.playerHand[0][i].cardName + '.png"></div>')
 
 
             }
@@ -113,5 +91,32 @@ jQuery(document).ready(function ($) {
                 alert("Error")
             }
         });
-    })
+    });
+
+    $(document).on('click', '.card-stack', function(){
+
+        var phase = document.getElementById("phase").innerHTML;
+        var phaseType = phase.substr(phase.indexOf(" ") + 1);
+        var card = $(this).attr('id').split('_', 2);
+        var cardId = card[1]
+        var cardType = card[0];
+
+        if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
+            $.ajax({
+                method: "GET",
+                url: "/json?input=" + cardId,
+                dataType: "json",
+                data: cardId,
+                processData: false,
+
+                success: function (data) {
+                    check_string(data)
+                    allowedClicks()
+                },
+                error: function (data) {
+                    alert("Error")
+                }
+            });
+        }
+    });
 });
