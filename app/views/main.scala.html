@@ -19,6 +19,7 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -27,17 +28,13 @@
                 <a class="p-2 text-dark" href="/">Home</a>
                 <a class="p-2 text-dark" href="/dominion/process?input=local">Play</a>
                 <a class="p-2 text-dark" href="/dominion/about">Rules</a>
-                <a class="p-2 text-dark" href="#">Quit</a>
+                <a class="p-2 text-dark" href="#" id="quit_game">Quit</a>
             </nav>
         </div>
 
-        <div class="pricing-header px-3 py-3 pb-md-2 mx-auto text-center">
-            <div class="dominion-image">
-                <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-            </div>
             @content
-        </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="@routes.Assets.versioned("javascripts/hello.js")"></script>
     </body>
 </html>
