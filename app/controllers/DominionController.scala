@@ -1,21 +1,19 @@
 package controllers
 
 import com.google.inject.{Guice, Injector}
-import de.htwg.wt.dominion.controller.IController
+import de.htwg.wt.dominion.controller.{EvalEvent, IController}
 import de.htwg.wt.dominion.controller.maincontroller.Controller
-import de.htwg.wt.dominion.model.cardComponent.cardBaseImpl.Card
 import de.htwg.wt.dominion.{CardMain, Dominion, DominionModule, PlayerMain}
-
+import play.api.libs.json._
 import play.api.libs.streams.ActorFlow
-import akka.actor.ActorSystem
+import play.api.mvc._
 import akka.stream.Materializer
 import akka.actor._
-import play.api.libs.json._
-import javax.inject._
-import play.api.mvc._
 
+import javax.inject._
 import scala.swing.Reactor
 
+@Singleton
 class DominionController @Inject()(cc: ControllerComponents)(implicit system: ActorSystem, mat: Materializer) extends AbstractController(cc) {
 
   val initArray:Array[String] = Array(" ")
@@ -24,7 +22,7 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
   val playerServer: Unit  = PlayerMain.main(Array())
 
   val injector: Injector = Guice.createInjector(new DominionModule)
-  val dominionController: Controller = injector.getInstance(classOf[Controller])
+  val dominionController: IController = injector.getInstance(classOf[Controller])
 
   def index: Action[AnyContent] = Action {
     Ok{views.html.titlescreen()}
@@ -88,7 +86,7 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
     json
   }
 
-  def socket = WebSocket.accept[String, String] { request =>
+  def socket: WebSocket = WebSocket.accept[String, String] { request =>
     ActorFlow.actorRef { out =>
       println("Connect received")
       DominionActorFactory.create(out)
@@ -96,23 +94,23 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
   }
 
   object DominionActorFactory {
-    def create(out: ActorRef) = {
+    def create(out: ActorRef): Props = {
       Props(new DominionWebSocketActor(out))
     }
   }
 
   class DominionWebSocketActor(out: ActorRef) extends Actor with Reactor {
-//    listenTo(dominionController)
+    listenTo(dominionController)
 
-    def receive = {
+    def receive: Receive = {
       case msg: String =>
         out ! (buildJson())
         println("Sent json to Client " + msg)
     }
 
-    reactions += {case event: _ => sendJsonToClient}
+    reactions += {case event: EvalEvent => sendJsonToClient()}
 
-    def sendJsonToClient = {
+    def sendJsonToClient(): Unit = {
       println("Received from controller")
       out ! (buildJson())
     }
