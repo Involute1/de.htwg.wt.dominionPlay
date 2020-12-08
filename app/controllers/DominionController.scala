@@ -5,13 +5,12 @@ import de.htwg.wt.dominion.controller.IController
 import de.htwg.wt.dominion.controller.maincontroller.Controller
 import de.htwg.wt.dominion.model.cardComponent.cardBaseImpl.Card
 import de.htwg.wt.dominion.{CardMain, Dominion, DominionModule, PlayerMain}
+
 import play.api.libs.streams.ActorFlow
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.actor._
-import akka.stream.impl.EmptySource.out
 import play.api.libs.json._
-
 import javax.inject._
 import play.api.mvc._
 
@@ -25,7 +24,7 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
   val playerServer: Unit  = PlayerMain.main(Array())
 
   val injector: Injector = Guice.createInjector(new DominionModule)
-  val dominionController: IController = injector.getInstance(classOf[Controller])
+  val dominionController: Controller = injector.getInstance(classOf[Controller])
 
   def index: Action[AnyContent] = Action {
     Ok{views.html.titlescreen()}
@@ -103,17 +102,21 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
   }
 
   class DominionWebSocketActor(out: ActorRef) extends Actor with Reactor {
-    listenTo(dominionController)
+//    listenTo(dominionController)
 
     def receive = {
       case msg: String =>
         out ! (buildJson())
         println("Sent json to Client " + msg)
     }
+
+    reactions += {case event: _ => sendJsonToClient}
+
+    def sendJsonToClient = {
+      println("Received from controller")
+      out ! (buildJson())
+    }
   }
 
-  def sendJsonToClient = {
-    println("Received from controller")
-    out ! (buildJson())
-  }
+
 }
