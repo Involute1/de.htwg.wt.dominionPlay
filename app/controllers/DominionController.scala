@@ -5,13 +5,19 @@ import de.htwg.wt.dominion.controller.IController
 import de.htwg.wt.dominion.controller.maincontroller.Controller
 import de.htwg.wt.dominion.model.cardComponent.cardBaseImpl.Card
 import de.htwg.wt.dominion.{CardMain, Dominion, DominionModule, PlayerMain}
-import javax.inject.Inject
-import play.api.libs.functional.syntax.{toFunctionalBuilderOps, unlift}
-import play.api.libs.json.Format.GenericFormat
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
-import play.api.libs.json.{JsNumber, JsObject, JsPath, JsValue, Json, OFormat, Writes}
+import play.api.libs.streams.ActorFlow
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import akka.actor._
+import akka.stream.impl.EmptySource.out
+import play.api.libs.json._
 
-class DominionController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+import javax.inject._
+import play.api.mvc._
+
+import scala.swing.Reactor
+
+class DominionController @Inject()(cc: ControllerComponents)(implicit system: ActorSystem, mat: Materializer) extends AbstractController(cc) {
 
   val initArray:Array[String] = Array(" ")
   val dominionServer: Unit = Dominion.main(initArray)
@@ -45,6 +51,12 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
   def toJson(input: String): Action[AnyContent] = Action {
     dominionController.eval(input)
 
+    val json = buildJson()
+
+    Ok(json)
+  }
+
+  def buildJson(): JsValue = {
     var json: JsValue = Json.parse("""
       {
         "html" : """ + Json.toJson(dominionController.toHTML) + """,
@@ -60,7 +72,7 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
     """)
 
     if (dominionController.getControllerStateAsString == "ActionState" || dominionController.getControllerStateAsString == "BuyState") {
-          json = Json.parse("""
+      json = Json.parse("""
             {
               "html" : """ + Json.toJson(dominionController.toHTML) + """,
               "playerActions" : """ + dominionController.getCurrentPlayerActions + """,
@@ -74,6 +86,34 @@ class DominionController @Inject()(cc: ControllerComponents) extends AbstractCon
             }
           """)
     }
-    Ok(json)
+    json
+  }
+
+  def socket = WebSocket.accept[String, String] { request =>
+    ActorFlow.actorRef { out =>
+      println("Connect received")
+      DominionActorFactory.create(out)
+    }
+  }
+
+  object DominionActorFactory {
+    def create(out: ActorRef) = {
+      Props(new DominionWebSocketActor(out))
+    }
+  }
+
+  class DominionWebSocketActor(out: ActorRef) extends Actor with Reactor {
+    listenTo(dominionController)
+
+    def receive = {
+      case msg: String =>
+        out ! (buildJson())
+        println("Sent json to Client " + msg)
+    }
+  }
+
+  def sendJsonToClient = {
+    println("Received from controller")
+    out ! (buildJson())
   }
 }
