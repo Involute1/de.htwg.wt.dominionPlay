@@ -60,11 +60,11 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
         "playerActions" : """ + 1 + """,
         "playerBuys" : """ + 1 + """,
         "playerMoney" : """ + 0 + """,
-        "controllerPhase" : """ + null + """,
+        "controllerPhase" : """ +  Json.arr(Array(1)) + """,
         "turn" : """ + 0 + """,
-        "playerName" : """ + null + """,
-        "playerHand" : """ + null + """,
-        "playingDecks" : """ + null + """
+        "playerName" : """ +  Json.arr(Array(1)) + """,
+        "playerHand" : """ +  Json.arr(Array(1)) + """,
+        "playingDecks" : """ + Json.arr(Array(1)) + """
       }
     """)
 
@@ -104,7 +104,8 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
 
     def receive: Receive = {
       case msg: String =>
-        out ! (buildJson())
+        dominionController.eval(msg)
+        out ! (buildJson().toString())
         println("Sent json to Client " + msg)
     }
 
@@ -112,7 +113,7 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
 
     def sendJsonToClient(): Unit = {
       println("Received from controller")
-      out ! (buildJson())
+      out ! (buildJson().toString())
     }
   }
 
