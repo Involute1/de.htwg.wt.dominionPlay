@@ -21,13 +21,15 @@ jQuery(document).ready(function ($) {
         websocket.onmessage = function (e) {
             controller = JSON.parse(e.data);
 
+            console.log(controller.html);
+
             if (controller.html === "Please enter the number of Players, must be between 3 & 5:") {
                 location.href = "/dominion/process?input=local";
             }
 
             console.log(controller);
-            allowedClicks();
             check_string(controller);
+            allowedClicks();
         }
     }
 
@@ -63,13 +65,17 @@ jQuery(document).ready(function ($) {
     }
 
     function check_string(json_input) {
-        if (json_input.html === "Player 1 please enter your name:"
+        if (json_input.html === "Please enter the number of Players, must be between 3 & 5:") {
+            $('.game').hide();
+            $('.player_names').hide();
+        } else if (json_input.html === "Player 1 please enter your name:"
             || json_input.html === "Player 2 please enter your name:"
             || json_input.html === "Player 3 please enter your name:"
             || json_input.html === "Player 4 please enter your name:"
             || json_input.html === "Player 5 please enter your name:") {
             $('.player_selection').hide();
             $('.player_names').show();
+            $('.game').hide();
         } else {
             $('.player_names').hide();
             $('.game').show();
