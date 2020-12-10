@@ -30,6 +30,7 @@ jQuery(document).ready(function ($) {
             console.log(controller);
             check_string(controller);
             allowedClicks();
+            start_game()
         }
     }
 
@@ -117,7 +118,6 @@ jQuery(document).ready(function ($) {
 
     function start_game() {
         location.href = "/dominion/process?input=local";
-        start_game();
     }
 
 
