@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-/*
+
     var websocket = new WebSocket("ws://localhost:9000/websocket");
     var controller = {};
 
@@ -22,11 +22,6 @@ jQuery(document).ready(function ($) {
             controller = JSON.parse(e.data);
 
             console.log(controller.html);
-
-            if (controller.html === "Please enter the number of Players, must be between 3 & 5:") {
-                location.href = "/dominion/process?input=local";
-            }
-
             console.log(controller);
             check_string(controller);
             allowedClicks();
@@ -112,7 +107,6 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.play', function () {
         websocket.send("local");
-        location.href = "/dominion/process?input=local";
     });
 
 
@@ -126,5 +120,4 @@ jQuery(document).ready(function ($) {
             websocket.send(cardId);
         }
     });
-    */
 });

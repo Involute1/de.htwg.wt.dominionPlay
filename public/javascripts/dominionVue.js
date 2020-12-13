@@ -1,11 +1,23 @@
 $(document).ready(function () {
 
     Vue.component('dominion-logo-component', {
-        template: '<img src="https://ph.gamekastle.com/categories/cat_2661.jpg">'
+        template: '<div class="dominion-image"><img src="https://ph.gamekastle.com/categories/cat_2661.jpg"></div>'
     })
 
-    Vue.component('dominion-button-component', {
-        template: '<button type="button">Click Me!</button>'
+    Vue.component('dominion-welcome-component', {
+        template: '<div class="welcome-text"><h1>Welcome to Dominion</h1></div>'
+    })
+
+    Vue.component('dominion-play-button-component', {
+        template: '<div class="button-container"><a href="#"><button type="button" class="btn btn-primary play">Play</button></a></div>'
+    })
+
+    Vue.component('dominion-rules-button-component', {
+        template: '<div class="button-container"><a href="/dominion/about"><button type="button" class="btn btn-primary">Rules</button></a></div>'
+    })
+
+    Vue.component('dominion-quit-button-component', {
+        template: '<div class="button-container"><button type="button" class="btn btn-primary quit_game">Quit</button></div>'
     })
 
     Vue.component('dominion-player-count-component', {
@@ -45,6 +57,90 @@ $(document).ready(function () {
     })
 
     var app = new Vue({
-        el: '#dominion'
+        el: '#titlescreen'
+    })
+
+
+    Vue.component('dominion-rules-goal', {
+        template: '<div class="description-heading"><div class="heading"><h4>Goal of the game:</h4></div><div class="description"><p>Try to get the biggest card set with the most value.The player with the most valuest cards and most points wins the game.</p></div></div>'
+    })
+
+    Vue.component('dominion-rules-start', {
+        template: '<div class="description-heading">\n' +
+            '            <div class="heading">\n' +
+            '                <h4>Setup:</h4>\n' +
+            '            </div>\n' +
+            '            <div class="description">\n' +
+            '                <p>\n' +
+            '                    Each player starts with 10 cards: 7 copper and 3 estates as a starting deck.\n' +
+            '                </p>\n' +
+            '            </div>\n' +
+            '        </div>'
+    })
+
+    Vue.component('dominion-rules-phase', {
+        template: '<div class="description-heading">\n' +
+            '            <div class="heading">\n' +
+            '                <h4>Game Play:</h4>\n' +
+            '            </div>\n' +
+            '            <div class="description">\n' +
+            '                <p>A turn consists of 3 phases:</p>\n' +
+            '                <ul>\n' +
+            '                    <li>\n' +
+            '                        <b>Action:</b> The player may play one action card from his hand.\n' +
+            '                    </li>\n' +
+            '                    <li>\n' +
+            '                        <b>Buy:</b> The player may buy a card in a pile on the table.\n' +
+            '                    </li>\n' +
+            '                    <li>\n' +
+            '                        <b>Cleanup:</b> The player must discard all played and unplayed cards back to the discard pile and draw again 5 new cards.\n' +
+            '                    </li>\n' +
+            '                </ul>\n' +
+            '            </div>\n' +
+            '        </div>'
+    })
+
+    Vue.component('dominion-rules-description', {
+        template: '<div class="description-heading">\n' +
+            '            <div class="heading">\n' +
+            '                <h4>Action phase:</h4>\n' +
+            '            </div>\n' +
+            '            <div class="description">\n' +
+            '                <p>\n' +
+            '                    The player may play one action cards. These are the Kingdom cards that say: "Action" at the bottom of the card.<br>\n' +
+            '                    Players don\'t start with any Action cards, so during the first 1 turns no Actions can be performed.<br>\n' +
+            '                    Normally a player can play only one card, but some action cards allow the player to play more cards.<br>\n' +
+            '                    To play a card, the player lays the action card face-up in his play area. He announces which card he is playing and follows the instructions written on that card from top to bottom.<br>\n' +
+            '                    The player may still play the Action card even when he is not able to do everything listed.<br>\n' +
+            '                    Any action cards played remain in the player\'s play area until the Clean-up phase of the turn unless otherwise indicated on the card.<br>\n' +
+            '                    The action phase ends when the player cannot or chooses not to play any more Action cards.<br>\n' +
+            '                </p>\n' +
+            '                <p>\n' +
+            '                    The player can gain one card from the Supply by paying its cost. The cost of a card is found in the lower left corner.<br>\n' +
+            '                    Any card in the Supply maybe be bought, but the player may not purchase cards from the Trash Pile. When a player played a certain card in his Action phase, its possible that he is allowed to buy more than one card.<br>\n' +
+            '                    The player places the purchased card from the Supply pile face-up on his Discard pile. The ability of the purchased card may not be used when he just gain the card.<br>\n' +
+            '                    The treasure cards remain in the play area until the Clean-up phase. Treasure cards will be used multiple times during the game. Treasure cards are a source of income, not a resource that is used up when played.<br>\n' +
+            '                    Coppers are worth 1 coin, Silvers are worth 2 coins and Golds are worth 3 coins.<br>\n' +
+            '                </p>\n' +
+            '                <p>\n' +
+            '                All cards gained are already in the player\'s discard pile. The player places also all his cards (played and unplayed) to this pile.<br>\n' +
+            '                    The player now draws a new hand of 5 cards from his Deck. If there are not enough cards in his Deck, he draws as many as he can.<br>\n' +
+            '                    The player shuffles then his Discard pile to form a new face-down Deck, and then draws the rest of his new hand.<br>\n' +
+            '                    Once the player has drawn a new hand of 5 cards, the next player starts his turn.<br>\n' +
+            '                    To speed up play, players may begin their turns while the previous players are completing their clean-up phases, but when someone plays an Attack card, the players must complete their Clean-up phases first in order to resolve the Attack.<br>\n' +
+            '                </p>\n' +
+            '                <p>\n' +
+            '                    The game ends when the last Province is bought, or when 3-4 piles are empty. The players will count their victory points in their decks and the player with the most points wins.<br>\n' +
+            '                    If there is a tie, then the player with the fewest turns wins.\n' +
+            '                </p>\n' +
+            '            </div>\n' +
+            '        </div>'
+    })
+
+
+
+
+    var app = new Vue({
+        el: '#rules'
     })
 });
