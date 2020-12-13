@@ -32,6 +32,8 @@ jQuery(document).ready(function ($) {
 
     $('.player_names').hide();
     $('.game').hide();
+    $('#rules').hide();
+    $('#titlescreen').show();
 
     function allowedClicks() {
         if ($("#phase").length !== 0) {
@@ -107,6 +109,13 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.play', function () {
         websocket.send("local");
+        $('#titlescreen').hide();
+        $('#rules').hide();
+    });
+
+    $(document).on('click', '.rules', function () {
+        $('#titlescreen').hide();
+        $('#rules').show();
     });
 
 
