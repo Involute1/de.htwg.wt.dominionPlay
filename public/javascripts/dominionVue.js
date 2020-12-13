@@ -1,22 +1,18 @@
 $(document).ready(function () {
-    var app = new Vue({
-        el: '#test-div',
-        data: {
-            text: '',
-            logo: '/assets/images/cards/Copper.png'
-        }
+
+    Vue.component('dominion-logo-component', {
+        template: '<img src="https://ph.gamekastle.com/categories/cat_2661.jpg">'
     })
 
-    Vue.component('sudoku-highlight-button-bar', {
-        template:`
-         <div class="buttonbarcontainer">
-             <label>
-                 Highlight
-             </label>
-             <div  class=" btn-group" >
-                 <a v-for="item in menuItems" v-bind:href="item.link" class="btn btn-primary"> {{item.text}} </a>
-             </div>
-         </div>
-     `,
+    Vue.component('dominion-button-component', {
+        template: '<button type="button" onclick=c()>Click Me!</button>'
+    })
+
+    function c() {
+        console.log("clicked")
+    }
+
+    var app = new Vue({
+        el: '#dominion'
     })
 });
