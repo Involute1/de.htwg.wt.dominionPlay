@@ -5,23 +5,38 @@ jQuery(document).ready(function ($) {
 
     connectWebSocket();
     $('#titlescreen').show();
+    $('#rules').hide();
+
 
     $(document).on('click', '.play', function () {
-        var app = new Vue({
-            el: '#playerInit'
-        });
         websocket.send("local");
-        $('#titlescreen').hide();
-        $('#rules').hide();
-        $('#dominion-name-input-component').hide();
     });
 
     $(document).on('click', '.rules', function () {
         var app = new Vue({
-            el: '#rules'
+            el: '#rules',
+            data: {
+                title: 'Welcome to Dominion'
+            }
         });
         $('#titlescreen').hide();
         $('#rules').show();
+    });
+
+    $(document).on('click', '.player-amount', function () {
+        var title = $(this).attr("value");
+        if (title === "set_name") {
+            title = $(this).prev().val();
+        }
+        websocket.send(title);
+    });
+
+    $(document).on('click', '.send-name', function () {
+        var title = $(this).attr("value");
+        if (title === "set_name") {
+            title = $(this).prev().val();
+        }
+        websocket.send(title);
     });
 
     $(document).on('click', '.card-stack', function () {
@@ -86,20 +101,26 @@ jQuery(document).ready(function ($) {
 
     function check_string(json_input) {
         if (json_input.html === "Please enter the number of Players, must be between 3 & 5:") {
-            $('.game').hide();
-            $('.player_names').hide();
+            var app = new Vue({
+                el: '#playerInit'
+            });
+            $('#titlescreen').hide();
+            $('#rules').hide();
         } else if (json_input.html === "Player 1 please enter your name:"
             || json_input.html === "Player 2 please enter your name:"
             || json_input.html === "Player 3 please enter your name:"
             || json_input.html === "Player 4 please enter your name:"
             || json_input.html === "Player 5 please enter your name:") {
-            $('.player_selection').hide();
-            $('.player_names').show();
-            $('.game').hide();
+            var app = new Vue({
+                el: '#nameInit'
+            });
+            $('#playerInit').hide();
         } else {
-            $('.player_names').hide();
-            $('.game').show();
-            $('.dominion-image').hide();
+            var app = new Vue({
+                el: '#dominion-game'
+            });
+            $('#nameInit').hide();
+            $('#dominion-game').show();
             $('#playerName').html("Name: " + json_input.playerName)
             $('#playerMoney').html("Money: " + json_input.playerMoney)
             $('#turn').html("Turn: " + json_input.turn)
@@ -118,15 +139,5 @@ jQuery(document).ready(function ($) {
         $('.tui-instructions').html(json_input.html)
         $('.form-control').val('');
     }
-
-
-    $(".game_container button").click(function () {
-        var title = $(this).attr("value");
-        console.log($('.tui-instructions').html)
-        if (title === "set_name") {
-            title = $(this).prev().val();
-        }
-        websocket.send(title);
-    });
 
 });

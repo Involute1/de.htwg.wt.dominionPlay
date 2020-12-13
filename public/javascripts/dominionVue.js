@@ -2,31 +2,20 @@ $(document).ready(function () {
 
     Vue.component('dominion-logo-component', {
         template: '<div class="dominion-image"><img src="https://ph.gamekastle.com/categories/cat_2661.jpg"></div>'
-    })
-
-    Vue.component('dominion-welcome-component', {
-        template: '<div class="welcome-text"><h1>Welcome to Dominion</h1></div>'
-    })
-
-    Vue.component('dominion-play-button-component', {
-        template: '<div class="button-container"><a href="#"><button type="button" class="btn btn-primary play">Play</button></a></div>'
-    })
-
-    Vue.component('dominion-rules-button-component', {
-        template: '<div class="button-container"><a href="#"><button type="button" class="btn btn-primary rules">Rules</button></a></div>'
-    })
-
-    Vue.component('dominion-quit-button-component', {
-        template: '<div class="button-container"><button type="button" class="btn btn-primary quit_game">Quit</button></div>'
-    })
+    });
 
     var app = new Vue({
-        el: '#titlescreen'
-    })
+        el: '#titlescreen',
+        data: {
+            title: 'Welcome to Dominion',
+            play: 'Play',
+            rules: 'Rules',
+            quit: 'Quit',
+        }
+    });
 
     Vue.component('dominion-player-count-component', {
-            template:
-            '<div class=name-input>' +
+            template: '<div class=name-input>' +
             '   <div class="tui-string">' +
             '       <h2 class="tui-instructions">How many Players are you?</h2>' +
             '   </div>' +
@@ -43,7 +32,7 @@ $(document).ready(function () {
             '       </div>' +
             '   </div>' +
             '</div>'
-    })
+    });
 
     Vue.component('dominion-name-input-component', {
         template:
@@ -55,15 +44,22 @@ $(document).ready(function () {
             '   <div class="input-tui">' +
             '       <div class="row justify-content-md-center">' +
             '           <input type="text" class="form-control" name="input">' +
-            '           <button class="btn btn-primary" value="set_name">Send</button>' +
+            '           <button class="btn btn-primary send-name" value="set_name">Send</button>' +
             '       </div>' +
             '   </div>' +
             '</div>'
-    })
+    });
 
     Vue.component('dominion-rules-goal', {
-        template: '<div class="description-heading"><div class="heading"><h4>Goal of the game:</h4></div><div class="description"><p>Try to get the biggest card set with the most value.The player with the most valuest cards and most points wins the game.</p></div></div>'
-    })
+        template: '<div class="description-heading">' +
+                        '<div class="heading">' +
+                            '<h4>Goal of the game:</h4>' +
+                        '</div>' +
+                        '<div class="description">' +
+                        '   <p>Try to get the biggest card set with the most value.The player with the most valuest cards and most points wins the game.</p>' +
+                        '</div>' +
+                    '</div>'
+    });
 
     Vue.component('dominion-rules-start', {
         template: '<div class="description-heading">\n' +
@@ -76,7 +72,34 @@ $(document).ready(function () {
             '                </p>\n' +
             '            </div>\n' +
             '        </div>'
-    })
+    });
+
+    Vue.component('dominion-game', {
+        template: '<div class="container px-3 mx-auto text-center">\n' +
+            '                <div class="row gameboard">\n' +
+            '                    <div class="game-information mb-3">\n' +
+            '                        <div class="info text-center">\n' +
+            '                            <h4 class="float-left mx-5" id="playerName"></h4>\n' +
+            '                            <h4 class="float-left mx-5" id="playerMoney"></h4>\n' +
+            '                            <h4 class="float-left mx-5" id="turn"></h4>\n' +
+            '                            <h4 class="float-left mx-5" id="phase"></h4>\n' +
+            '                            <h4 class="float-left mx-5" id="playerActions"></h4>\n' +
+            '                            <h4 class="float-left mx-5" id="playerBuys"></h4>\n' +
+            '                        </div>\n' +
+            '                    </div>\n' +
+            '                </div>\n' +
+            '                <div class="row card-row playing-decks justify-content-center pt-2" id="playing-decks">\n' +
+            '\n' +
+            '                </div>\n' +
+            '                <div class="row hand-cards my-3" id="hand-decks">\n' +
+            '                    <h4 class="mx-5">Handkarten</h4>\n' +
+            '                    <br>\n' +
+            '                    <div class="card-row hand-decks">\n' +
+            '\n' +
+            '                    </div>\n' +
+            '                </div>\n' +
+            '            </div>'
+    });
 
     Vue.component('dominion-rules-phase', {
         template: '<div class="description-heading">\n' +
@@ -98,7 +121,7 @@ $(document).ready(function () {
             '                </ul>\n' +
             '            </div>\n' +
             '        </div>'
-    })
+    });
 
     Vue.component('dominion-rules-description', {
         template: '<div class="description-heading">\n' +
@@ -135,6 +158,6 @@ $(document).ready(function () {
             '                </p>\n' +
             '            </div>\n' +
             '        </div>'
-    })
+    });
 
 });

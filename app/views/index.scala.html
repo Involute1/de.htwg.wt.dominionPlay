@@ -2,28 +2,28 @@
 @(controllerString: String)(playerActions: Int)(playerBuys: Int)(playerMoney: Int)(phase: String)(turn: Int)(playerName: String)(playerHand: List[Card])(playingDecks: List[List[Card]])
 @main("Welcome to Dominion") {
 
-    <div id="titlescreen">
-        <div class="pricing-header px-3 mx-auto text-center">
+    <div class="pricing-header px-3 mx-auto text-center">
+        <div id="titlescreen">
             <dominion-logo-component></dominion-logo-component>
-            <dominion-welcome-component></dominion-welcome-component>
-            <dominion-play-button-component></dominion-play-button-component>
-            <dominion-rules-button-component></dominion-rules-button-component>
-            <dominion-quit-button-component></dominion-quit-button-component>
+            <div class="welcome-text"><h1>{{ title }}</h1></div>
+            <div class="button-container"><a href="#"><button type="button" class="btn btn-primary play">{{ play }}</button></a></div>
+            <div class="button-container"><a href="#"><button type="button" class="btn btn-primary rules">{{ rules }}</button></a></div>
+            <div class="button-container"><button type="button" class="btn btn-primary quit_game">{{ quit }}</button></div>
         </div>
-    </div>
 
-    <div id="playerInit">
-        <div class="pricing-header px-3 mx-auto text-center">
+        <div id="playerInit">
             <dominion-logo-component></dominion-logo-component>
             <dominion-player-count-component></dominion-player-count-component>
+        </div>
+
+        <div id="nameInit">
+            <dominion-logo-component></dominion-logo-component>
             <dominion-name-input-component></dominion-name-input-component>
         </div>
-    </div>
 
-    <div id="rules">
-        <div class="pricing-header px-3 mx-auto text-center">
+        <div id="rules">
             <dominion-logo-component></dominion-logo-component>
-            <dominion-welcome-component></dominion-welcome-component>
+            <div class="welcome-text"><h1>{{ title }}</h1></div>
             <div class="text-left">
                 <dominion-rules-goal></dominion-rules-goal>
                 <dominion-rules-start></dominion-rules-start>
@@ -33,50 +33,19 @@
         </div>
     </div>
 
-
+    <div id="dominion-game">
+        <dominion-game></dominion-game>
+    </div>
 
 
         <!--
 
 
 
-    <div class="game_container">
-        <div class="pricing-header px-3 mx-auto text-center">
-            <div class="tui-container">
 
 
-                <div class="dominion-image">
-                    <img src="https://ph.gamekastle.com/categories/cat_2661.jpg">
-                </div>
 
-                <div class="player_selection">
-                    <div class="input-tui" id="player_amount">
-                        <div class="row justify-content-md-center">
-                            <button name="input" value="3" id="player3" class="btn btn-primary mx-2 player-amount">
-                                3 Player</button>
-                            <button name="input" value="4" id="player4" class="btn btn-primary mx-2 player-amount">
-                                4 Player</button>
-                            <button name="input" value="5" id="player5" class="btn btn-primary mx-2 player-amount">
-                                5 Player</button>
-                        </div>
 
-                    </div>
-                </div>
-
-                <div class="player_names">
-                    <div class="tui-string">
-                        <h2 class="tui-instructions">
-    @controllerString </h2>
-    </div>
-    <div class="input-tui">
-        <div class="row justify-content-md-center">
-            <input type="text" class="form-control" name="input">
-            <button class="btn btn-primary" value="set_name">Send</button>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="game">
         <div class="container px-3 mx-auto text-center">
             <div class="row gameboard">
