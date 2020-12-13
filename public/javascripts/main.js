@@ -3,6 +3,37 @@ jQuery(document).ready(function ($) {
     var websocket = new WebSocket("ws://localhost:9000/websocket");
     var controller = {};
 
+    connectWebSocket();
+    $('#titlescreen').show();
+
+    $(document).on('click', '.play', function () {
+        var app = new Vue({
+            el: '#playerInit'
+        })
+        websocket.send("local");
+        $('#titlescreen').hide();
+        $('#rules').hide();
+    });
+
+    $(document).on('click', '.rules', function () {
+        var app = new Vue({
+            el: '#rules'
+        })
+        $('#titlescreen').hide();
+        $('#rules').show();
+    });
+
+    $(document).on('click', '.card-stack', function () {
+        var phase = document.getElementById("phase").innerHTML;
+        var phaseType = phase.substr(phase.indexOf(" ") + 1);
+        var card = $(this).attr('id').split('_', 2);
+        var cardId = card[1]
+        var cardType = card[0];
+        if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
+            websocket.send(cardId);
+        }
+    });
+
     function connectWebSocket() {
         websocket.setTimout
 
@@ -27,13 +58,6 @@ jQuery(document).ready(function ($) {
             allowedClicks();
         }
     }
-
-    connectWebSocket();
-
-    $('.player_names').hide();
-    $('.game').hide();
-    $('#rules').hide();
-    $('#titlescreen').show();
 
     function allowedClicks() {
         if ($("#phase").length !== 0) {
@@ -106,27 +130,4 @@ jQuery(document).ready(function ($) {
         websocket.send(title);
     });
 
-
-    $(document).on('click', '.play', function () {
-        websocket.send("local");
-        $('#titlescreen').hide();
-        $('#rules').hide();
-    });
-
-    $(document).on('click', '.rules', function () {
-        $('#titlescreen').hide();
-        $('#rules').show();
-    });
-
-
-    $(document).on('click', '.card-stack', function () {
-        var phase = document.getElementById("phase").innerHTML;
-        var phaseType = phase.substr(phase.indexOf(" ") + 1);
-        var card = $(this).attr('id').split('_', 2);
-        var cardId = card[1]
-        var cardType = card[0];
-        if ((phaseType === "Buyphase" && cardType === "card") || (phaseType === "Actionphase" && cardType === "handCard")) {
-            websocket.send(cardId);
-        }
-    });
 });

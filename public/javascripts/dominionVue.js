@@ -60,13 +60,6 @@ $(document).ready(function () {
             '</div>'
     })
 
-    // var app = new Vue({
-    //     el: '#playerInit'
-    // })
-
-
-
-
     Vue.component('dominion-rules-goal', {
         template: '<div class="description-heading"><div class="heading"><h4>Goal of the game:</h4></div><div class="description"><p>Try to get the biggest card set with the most value.The player with the most valuest cards and most points wins the game.</p></div></div>'
     })
@@ -143,10 +136,4 @@ $(document).ready(function () {
             '        </div>'
     })
 
-
-
-
-    // var app = new Vue({
-    //     el: '#rules'
-    // })
 });
