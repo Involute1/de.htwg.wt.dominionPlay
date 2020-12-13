@@ -8,7 +8,7 @@ lazy val `dominionplay` = (project in file(".")).enablePlugins(PlayScala)
       
 //resolvers += "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
 
-scalaVersion := "2.12.11"
+scalaVersion := "2.13.3"
 
 libraryDependencies ++= Seq(guice)
 //libraryDependencies ++= Seq("org.slf4j" % "slf4j-nop" % "1.7.26")

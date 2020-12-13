@@ -60,9 +60,9 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
         "playerActions" : """ + 1 + """,
         "playerBuys" : """ + 1 + """,
         "playerMoney" : """ + 0 + """,
-        "controllerPhase" : """ +  Json.arr(Array(1)) + """,
+        "controllerPhase" : """ +  Json.toJson(" ") + """,
         "turn" : """ + 0 + """,
-        "playerName" : """ +  Json.arr(Array(1)) + """,
+        "playerName" : """ +  Json.toJson(" ") + """,
         "playerHand" : """ +  Json.arr(Array(1)) + """,
         "playingDecks" : """ + Json.arr(Array(1)) + """
       }
