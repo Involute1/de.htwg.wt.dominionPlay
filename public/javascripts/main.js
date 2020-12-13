@@ -9,16 +9,17 @@ jQuery(document).ready(function ($) {
     $(document).on('click', '.play', function () {
         var app = new Vue({
             el: '#playerInit'
-        })
+        });
         websocket.send("local");
         $('#titlescreen').hide();
         $('#rules').hide();
+        $('#dominion-name-input-component').hide();
     });
 
     $(document).on('click', '.rules', function () {
         var app = new Vue({
             el: '#rules'
-        })
+        });
         $('#titlescreen').hide();
         $('#rules').show();
     });
@@ -51,8 +52,6 @@ jQuery(document).ready(function ($) {
 
         websocket.onmessage = function (e) {
             controller = JSON.parse(e.data);
-
-            console.log(controller.html);
             console.log(controller);
             check_string(controller);
             allowedClicks();
