@@ -30,7 +30,6 @@ jQuery(document).ready(function ($) {
             console.log(controller);
             check_string(controller);
             allowedClicks();
-            start_game()
         }
     }
 
@@ -113,12 +112,8 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.play', function () {
         websocket.send("local");
-        start_game();
-    });
-
-    function start_game() {
         location.href = "/dominion/process?input=local";
-    }
+    });
 
 
     $(document).on('click', '.card-stack', function () {
