@@ -34,6 +34,7 @@ $(document).ready(function () {
             '   <div class="tui-string">' +
             '       <h2 class="tui-instructions">{{nameString}}</h2>' +
             '   </div>' +
+            '<br>' +
             '   <div class="input-tui">' +
             '       <div class="row justify-content-md-center">' +
             '           <input type="text" class="form-control" name="input">' +
