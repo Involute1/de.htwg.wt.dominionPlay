@@ -116,6 +116,4 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
       out ! (buildJson().toString())
     }
   }
-
-
 }

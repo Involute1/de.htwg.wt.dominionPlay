@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-
+/*
     var websocket = new WebSocket("ws://localhost:9000/websocket");
     var controller = {};
 
@@ -126,4 +126,5 @@ jQuery(document).ready(function ($) {
             websocket.send(cardId);
         }
     });
+    */
 });
