@@ -13,7 +13,7 @@ $(document).ready(function () {
     })
 
     Vue.component('dominion-rules-button-component', {
-        template: '<div class="button-container"><a href="/dominion/about"><button type="button" class="btn btn-primary">Rules</button></a></div>'
+        template: '<div class="button-container"><a href="#"><button type="button" class="btn btn-primary rules">Rules</button></a></div>'
     })
 
     Vue.component('dominion-quit-button-component', {
@@ -63,6 +63,9 @@ $(document).ready(function () {
     var app = new Vue({
         el: '#playerInit'
     })
+
+
+
 
     Vue.component('dominion-rules-goal', {
         template: '<div class="description-heading"><div class="heading"><h4>Goal of the game:</h4></div><div class="description"><p>Try to get the biggest card set with the most value.The player with the most valuest cards and most points wins the game.</p></div></div>'
