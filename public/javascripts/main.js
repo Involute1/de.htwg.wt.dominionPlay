@@ -1,6 +1,7 @@
 jQuery(document).ready(function ($) {
     var websocket = new WebSocket("ws://localhost:9000/websocket");
     var controller = {};
+    var websocketId = 0;
 
     connectWebSocket();
     $('#titlescreen').show();
@@ -53,6 +54,7 @@ jQuery(document).ready(function ($) {
 
         websocket.onopen = function(event) {
             console.log("Connected to Websocket");
+            websocket.send(JSON.stringify({"client":"client"}));
         }
 
         websocket.onclose = function () {
@@ -66,8 +68,14 @@ jQuery(document).ready(function ($) {
         websocket.onmessage = function (e) {
             controller = JSON.parse(e.data);
             console.log(controller);
-            check_string(controller);
-            allowedClicks();
+            if ("client_id" in controller) {
+                websocketId = controller.client_id;
+                console.log(websocketId);
+            } else {
+                check_string(controller);
+                allowedClicks();
+            }
+
         }
     }
 
@@ -123,8 +131,13 @@ jQuery(document).ready(function ($) {
             $('#rules').hide();
             $('#playerInit').hide();
             $('#nameInit').hide();
-            // $('#hand-decks').hide();
-            // var playerTurn = json_input.playerTurn;
+            $('#hand-decks').hide();
+            var playerTurn = json_input.playerTurn;
+            console.log("PLAYER TURN: " + playerTurn);
+            console.log("ID: " + websocketId);
+            if (playerTurn === websocketId) {
+                $('#hand-decks').show();
+            }
             $('#dominion-game').show();
             $('#playerName').html("Name: " + json_input.playerName)
             $('#playerMoney').html("Money: " + json_input.playerMoney)

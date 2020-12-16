@@ -20,6 +20,7 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
   val dominionServer: Unit = Dominion.main(initArray)
   val cardServer: Unit  = CardMain.main(Array())
   val playerServer: Unit  = PlayerMain.main(Array())
+  var playerTurn: Int = 0;
 
   val injector: Injector = Guice.createInjector(new DominionModule)
   val dominionController: IController = injector.getInstance(classOf[Controller])
@@ -101,14 +102,32 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
     }
   }
 
+  def buildWebSocketJson(client_id: Int): JsValue = {
+    var json: JsValue = Json.parse("""
+      {
+        "client_id" : """ + client_id + """
+      }
+    """)
+    json
+  }
+
   class DominionWebSocketActor(out: ActorRef) extends Actor with Reactor {
     listenTo(dominionController)
 
     def receive: Receive = {
       case msg: String =>
-        dominionController.eval(msg)
-        out ! (buildJson().toString())
-        println("Sent json to Client " + msg)
+        if (msg.contains("client")) {
+          out ! (buildWebSocketJson(playerTurn).toString())
+          println("Added Client: " + playerTurn)
+          if (playerTurn == 0) {
+            playerTurn = 1
+          }
+          playerTurn = playerTurn + 1
+        } else {
+          dominionController.eval(msg)
+          out ! (buildJson().toString())
+          println("Sent json to Client " + msg)
+        }
     }
 
     reactions += {case event: EvalEvent => sendJsonToClient()}
