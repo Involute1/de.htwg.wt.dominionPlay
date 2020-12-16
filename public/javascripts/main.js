@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-
     var websocket = new WebSocket("ws://localhost:9000/websocket");
     var controller = {};
 
@@ -51,7 +50,6 @@ jQuery(document).ready(function ($) {
     });
 
     function connectWebSocket() {
-        websocket.setTimout
 
         websocket.onopen = function(event) {
             console.log("Connected to Websocket");
@@ -114,12 +112,19 @@ jQuery(document).ready(function ($) {
             var app = new Vue({
                 el: '#nameInit'
             });
+            $('#titlescreen').hide();
+            $('#rules').hide();
             $('#playerInit').hide();
         } else {
             var app = new Vue({
                 el: '#dominion-game'
             });
+            $('#titlescreen').hide();
+            $('#rules').hide();
+            $('#playerInit').hide();
             $('#nameInit').hide();
+            // $('#hand-decks').hide();
+            // var playerTurn = json_input.playerTurn;
             $('#dominion-game').show();
             $('#playerName').html("Name: " + json_input.playerName)
             $('#playerMoney').html("Money: " + json_input.playerMoney)

@@ -64,7 +64,8 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
         "turn" : """ + 0 + """,
         "playerName" : """ +  Json.toJson(" ") + """,
         "playerHand" : """ +  Json.arr(Array(1)) + """,
-        "playingDecks" : """ + Json.arr(Array(1)) + """
+        "playingDecks" : """ + Json.arr(Array(1)) + """,
+        "playerTurn" : """ + 1 + """
       }
     """)
 
@@ -79,7 +80,8 @@ class DominionController @Inject()(cc: ControllerComponents)(implicit system: Ac
               "turn" : """ + dominionController.getTurn + """,
               "playerName" : """ + Json.toJson(dominionController.getCurrentPlayerName) + """,
               "playerHand" : """ + Json.arr(dominionController.getCurrentPlayerHand) + """,
-              "playingDecks" : """ + Json.arr(dominionController.getPlayingDecks) + """
+              "playingDecks" : """ + Json.arr(dominionController.getPlayingDecks) + """,
+              "playerTurn" : """ + dominionController.getCurrentPlayerTurn + """
             }
           """)
     }
