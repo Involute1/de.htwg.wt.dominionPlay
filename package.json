@@ -1,0 +1,40 @@
+{
+  "name": "de.htwg.wt.dominionplay",
+  "version": "1.0.0",
+  "description": "* [General info](#general-info)\r * [Screenshots](#screenshots)\r * [Technologies](#technologies)\r * [Status](#status)\r * [Team](#team)\r * [License](#License)",
+  "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@polymer/paper-icon-button": "^3.0.2",
+    "@vaadin/vaadin-button": "^2.4.0",
+    "@vaadin/vaadin-date-picker": "^4.4.1",
+    "@vaadin/vaadin-grid": "^5.7.7",
+    "@vaadin/vaadin-text-field": "^2.8.2",
+    "vuetify": "^2.2.11"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.1",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-vuetify": "~2.0.9",
+    "vuetify-loader": "^1.3.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Involute1/de.htwg.wt.dominionPlay/issues"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/Involute1/de.htwg.wt.dominionPlay#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Involute1/de.htwg.wt.dominionPlay.git"
+  }
+}
