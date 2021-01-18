@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
-    var websocket = new WebSocket("ws://localhost:9000/websocket");
+    // var websocket = new WebSocket("ws://localhost:9000/websocket");
+    var websocket;
     var controller = {};
     var websocketId = 0;
 
