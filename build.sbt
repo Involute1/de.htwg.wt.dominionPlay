@@ -2,11 +2,13 @@ import com.typesafe.sbt.SbtScalariform._
 
 import scalariform.formatter.preferences._
 
-name := "play-silhouette-seed"
+name := "dominionServer"
 
 version := "6.0.0"
 
 scalaVersion := "2.13.1"
+
+herokuJdkVersion in Compile := "11.0.8"
 
 resolvers += Resolver.jcenterRepo
 
