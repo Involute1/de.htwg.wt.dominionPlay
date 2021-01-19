@@ -2,7 +2,7 @@ import com.typesafe.sbt.SbtScalariform._
 
 import scalariform.formatter.preferences._
 
-name := "dominionServer"
+name := "play-silhouette-seed"
 
 version := "6.0.0"
 
