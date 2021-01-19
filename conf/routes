@@ -32,6 +32,13 @@ POST        /password/change                 controllers.ChangePasswordControlle
 GET         /account/email/:email            controllers.ActivateAccountController.send(email: String)
 GET         /account/activate/:token         controllers.ActivateAccountController.activate(token: java.util.UUID)
 
+
+GET     /dominion                   controllers.DominionController.dominion()
+GET     /dominion/about             controllers.DominionController.about()
+#GET     /dominion/process           controllers.DominionController.process(input: String)
+#GET     /json                       controllers.DominionController.toJson(input: String)
+GET     /websocket                  controllers.DominionController.socket
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                    controllers.Assets.versioned(file)
 ->          /webjars                         webjars.Routes

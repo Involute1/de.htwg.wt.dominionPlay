@@ -1,0 +1,105 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+h1, h2, h3, h4, h5 {
+    margin-bottom: 25px;
+}
+
+a, a:visited, a:hover, a:active {
+    color: #0062cc;
+    text-decoration: none;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.pricing-header .dominion-image img {
+    width: 500px;
+}
+
+.pricing-header .welcome-text h1 {
+    margin-bottom: 50px;
+}
+
+.pricing-header .button-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pricing-header .button-container button {
+    padding: 12px 29px;
+    font-size: 25px;
+    width: 150px;
+    cursor: pointer;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+
+.pricing-header .text-left .description-heading {
+    margin-bottom: 37px;
+}
+
+.pricing-header .tui-container .input-tui {
+    margin: 10px 20px 0 0;
+}
+
+.pricing-header .tui-container .input-tui .row {
+    margin: 0;
+}
+
+.pricing-header .tui-container .input-tui input {
+    width: 40%;
+    margin-right: 15px;
+}
+
+.pricing-header .tui-container .input-tui button {
+    width: 85px;
+}
+
+body .container {
+    min-width: 1470px !important;
+}
+
+.container .gameboard .player-name {
+    padding-top: 10px;
+    margin: 0 35px 15px 0;
+}
+
+.container .gameboard .player-money {
+    margin: 0 35px 15px 0;
+}
+
+.container .card-stack img {
+    width: 150px;
+    margin: 0 19px 3px 0;
+    cursor: pointer;
+}
+
+.container .game-information .info .float-left {
+    float: left;
+}
+
+.game-information, .hand-cards {
+    border: 3px solid black;
+    padding: 13px 5px 5px 5px;
+    width: 100%;
+}
